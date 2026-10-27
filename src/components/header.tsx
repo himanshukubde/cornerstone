@@ -521,11 +521,7 @@ export function SiteHeader() {
                     onClick={() => toggleMenu("services")}
                   >
                     <span className="rgp-nav-text">Services</span>
-                    {openMenu === "services" ? (
-                      <ChevronUp size={14} />
-                    ) : (
-                      <ChevronDown size={14} />
-                    )}
+                    <ChevronDown size={14} className="rgp-nav-chevron" />
                   </button>
                 </li>
 
@@ -538,11 +534,7 @@ export function SiteHeader() {
                     onClick={() => toggleMenu("industry")}
                   >
                     <span className="rgp-nav-text">Industry</span>
-                    {openMenu === "industry" ? (
-                      <ChevronUp size={14} />
-                    ) : (
-                      <ChevronDown size={14} />
-                    )}
+                    <ChevronDown size={14} className="rgp-nav-chevron" />
                   </button>
                 </li>
 
@@ -566,11 +558,7 @@ export function SiteHeader() {
                     onClick={() => toggleMenu("careers")}
                   >
                     <span className="rgp-nav-text">Career at CORNERSTONE</span>
-                    {openMenu === "careers" ? (
-                      <ChevronUp size={14} />
-                    ) : (
-                      <ChevronDown size={14} />
-                    )}
+                    <ChevronDown size={14} className="rgp-nav-chevron" />
                   </button>
                 </li>
 
@@ -623,6 +611,15 @@ export function SiteHeader() {
               </button>
             </div>
           </div>
+
+          {/* Semi-transparent Backdrop for Mega-Menu */}
+          {openMenu && (
+            <div
+              className="rgp-mega-backdrop"
+              onClick={() => setOpenMenu(null)}
+              aria-hidden="true"
+            />
+          )}
 
           {/* ======================================================== */}
           {/* 1. SERVICES MEGA-MENU (Exact RGP Layout & Typography)   */}

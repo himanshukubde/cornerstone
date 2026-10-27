@@ -112,22 +112,32 @@
   height: 100%;
 }
 
-/* Brand underline ONLY under the text/word, not extending past to the chevron icon */
-.rgp-nav-btn.is-active .rgp-nav-text::after {
+/* RGP Animated Underline: Draws smoothly from left on hover and stays on active */
+.rgp-nav-text::after {
   content: '';
   position: absolute;
   bottom: 0;
   left: 0;
-  right: 0;
+  width: 100%;
   height: 2.5px;
   background-color: var(--color-brand);
+  transform: scaleX(0);
+  transform-origin: right center;
+  transition: transform 0.32s cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.rgp-nav-btn svg {
-  transition: transform 0.25s ease;
+.rgp-nav-btn:hover .rgp-nav-text::after,
+.rgp-nav-btn.is-active .rgp-nav-text::after {
+  transform: scaleX(1);
+  transform-origin: left center;
 }
 
-.rgp-nav-btn.is-active svg {
+.rgp-nav-chevron {
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  flex-shrink: 0;
+}
+
+.rgp-nav-btn.is-active .rgp-nav-chevron {
   transform: rotate(180deg);
 }
 
@@ -231,6 +241,27 @@
   }
 }
 
+/* Subtle semi-transparent backdrop behind open mega menu */
+.rgp-mega-backdrop {
+  position: fixed;
+  inset: 0;
+  top: var(--rgp-header-height);
+  background: rgba(11, 17, 32, 0.38);
+  backdrop-filter: blur(3px);
+  -webkit-backdrop-filter: blur(3px);
+  z-index: 990;
+  animation: rgpBackdropFade 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes rgpBackdropFade {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
 /* Full-Width Click-to-Open Mega-Menu Panel */
 .rgp-mega-panel {
   position: absolute;
@@ -242,10 +273,11 @@
   overflow-y: auto;
   background-color: #FFFFFF;
   border-top: 1px solid #E5E7EB;
-  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.1);
-  padding: 32px 56px 40px;
+  box-shadow: 0 28px 64px -8px rgba(0, 0, 0, 0.16);
+  padding: 36px 56px 44px;
   z-index: 1200;
-  animation: rgpSlideDown 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: rgpSlideDown 0.36s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  will-change: transform, opacity;
   scrollbar-width: thin;
   scrollbar-color: #1A237E #F1F3F9;
 }
@@ -264,11 +296,11 @@
 }
 
 @keyframes rgpSlideDown {
-  from {
+  0% {
     opacity: 0;
-    transform: translateY(-8px);
+    transform: translateY(-16px);
   }
-  to {
+  100% {
     opacity: 1;
     transform: translateY(0);
   }
@@ -303,6 +335,18 @@
   background-color: #F8FAFC;
 }
 
+/* Keyframes for smooth entrance of mega-menu contents */
+@keyframes rgpFadeSlideUp {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Eyebrow in Mega-Menu (e.g. CAPABILITIES / SERVICES OVERVIEW) */
 .rgp-mega-eyebrow,
 .big-menu-full h4 {
@@ -318,6 +362,7 @@
   align-items: center;
   gap: 8px;
   text-decoration: none;
+  animation: rgpFadeSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) 0.04s backwards;
 }
 
 /* Two-column Container with vertical divider */
@@ -368,7 +413,16 @@
 .rgp-accordion-item {
   display: flex;
   flex-direction: column;
+  animation: rgpFadeSlideUp 0.38s cubic-bezier(0.16, 1, 0.3, 1) backwards;
 }
+
+.rgp-accordion-item:nth-child(1) { animation-delay: 0.04s; }
+.rgp-accordion-item:nth-child(2) { animation-delay: 0.08s; }
+.rgp-accordion-item:nth-child(3) { animation-delay: 0.12s; }
+.rgp-accordion-item:nth-child(4) { animation-delay: 0.16s; }
+.rgp-accordion-item:nth-child(5) { animation-delay: 0.20s; }
+.rgp-accordion-item:nth-child(6) { animation-delay: 0.24s; }
+.rgp-accordion-item:nth-child(7) { animation-delay: 0.28s; }
 
 /* Exact RGP Accordion Control: 32px font-size, 400 font-weight, 140% line-height */
 .menu-item-accordion-control,
@@ -420,12 +474,25 @@
   color: var(--color-brand, #1A237E);
 }
 
+/* Submenu Accordion Expansion Animation */
+@keyframes rgpSubmenuExpand {
+  0% {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 /* Sub-items accordion container nested below open item */
 .menu-item-accordion,
 .rgp-accordion-subitems {
   margin: 6px 0 18px 0;
   padding: 0;
   list-style: none;
+  animation: rgpSubmenuExpand 0.25s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .menu-item-accordion ul,
@@ -502,6 +569,7 @@
   display: flex;
   flex-direction: column;
   padding-left: 12px;
+  animation: rgpFadeSlideUp 0.4s cubic-bezier(0.16, 1, 0.3, 1) 0.1s backwards;
 }
 
 .menu-featured-article__img,
