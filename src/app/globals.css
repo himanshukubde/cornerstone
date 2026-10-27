@@ -730,43 +730,60 @@ a {
   }
 }
 
-/* Intro Section (What We Do - Exact RGP 2-Column Editorial Split) */
+/* ==========================================================================
+   RGP Exact Header-Tag-and-Title Section
+   ========================================================================== */
+
+.rgp-home-intro {
+  width: 100%;
+  background-color: #FFFFFF;
+}
+
+.rgp .header-tag-and-title,
+.header-tag-and-title,
 .intro-section {
   max-width: 1440px;
   margin: 0 auto;
   padding: 100px 48px 110px;
   display: grid;
-  grid-template-columns: 1fr 1.15fr;
+  grid-template-columns: 5fr 7fr;
   gap: 80px;
   align-items: start;
+  box-sizing: border-box;
 }
 
+.header-tag-and-title__left,
 .intro-left {
   display: flex;
   flex-direction: column;
 }
 
+.header-tag-and-title .header-tag,
+.header-tag,
 .intro-eyebrow {
   font-family: var(--font-poppins), 'Poppins', sans-serif;
-  font-size: 12px;
+  font-size: 13px;
   font-weight: 700;
-  letter-spacing: 2.5px;
+  letter-spacing: 2px;
   text-transform: uppercase;
   color: #121212;
-  margin-bottom: 22px;
+  margin: 0 0 20px 0;
   display: block;
 }
 
+.header-tag-and-title h2,
 .intro-title {
-  font-family: var(--font-heading), 'Poppins', sans-serif;
+  font-family: var(--font-heading), var(--font-poppins), 'Poppins', sans-serif;
   font-size: clamp(38px, 4vw, 56px);
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.12;
   color: #121212;
   letter-spacing: -0.02em;
-  margin-bottom: 32px;
+  margin: 0 0 32px 0;
 }
 
+/* RGP Arrow CTA Button */
+.arrow-cta__link,
 .intro-cta {
   display: inline-flex;
   align-items: center;
@@ -780,48 +797,95 @@ a {
   width: fit-content;
 }
 
+.arrow-cta__link:hover,
 .intro-cta:hover {
-  color: var(--color-brand, #1A237E);
+  color: #D8232A;
 }
 
+.arrow-cta__icon,
 .intro-cta-box {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   width: 28px;
   height: 28px;
-  background-color: var(--color-brand, #1A237E);
+  background-color: #D8232A; /* Exact RGP Red square box from user screenshot */
   color: #FFFFFF;
   border-radius: 2px;
-  transition: transform 0.2s ease, background-color 0.2s ease;
+  transition: transform 0.25s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.2s ease;
   flex-shrink: 0;
 }
 
+.arrow-cta__link:hover .arrow-cta__icon,
 .intro-cta:hover .intro-cta-box {
-  background-color: var(--color-brand-hover, #121858);
+  background-color: #B71C1C;
   transform: translateX(4px);
 }
 
+.header-tag-and-title__body,
 .intro-right {
   display: flex;
   flex-direction: column;
-  padding-top: 6px;
+  padding-top: 4px;
 }
 
+/* The exact rule requested by user: 2rem (32px) font size */
+.rgp .header-tag-and-title .header-tag-and-title__body--large p,
+.header-tag-and-title .header-tag-and-title__body--large p,
 .intro-editorial-text {
-  font-family: var(--font-poppins), 'Poppins', sans-serif;
-  font-size: clamp(20px, 1.65vw, 25px);
-  font-weight: 400;
-  line-height: 1.62;
-  color: #121212;
-  letter-spacing: -0.01em;
+  font-size: 2rem !important; /* Exactly 32px matching RGP */
+  line-height: 1.4 !important; /* 44.8px matching RGP */
+  font-weight: 400 !important;
+  font-family: var(--font-poppins), 'Poppins', sans-serif !important;
+  color: #121212 !important;
+  letter-spacing: -0.015em !important;
+  margin: 0 !important;
+}
+
+@media (max-width: 1200px) {
+  .rgp .header-tag-and-title,
+  .header-tag-and-title,
+  .intro-section {
+    gap: 50px;
+    padding: 80px 32px;
+  }
+
+  .rgp .header-tag-and-title .header-tag-and-title__body--large p,
+  .header-tag-and-title .header-tag-and-title__body--large p,
+  .intro-editorial-text {
+    font-size: 1.75rem !important;
+    line-height: 1.42 !important;
+  }
 }
 
 @media (max-width: 1024px) {
+  .rgp .header-tag-and-title,
+  .header-tag-and-title,
   .intro-section {
     grid-template-columns: 1fr;
-    gap: 40px;
-    padding: 70px 24px 80px;
+    gap: 36px;
+    padding: 64px 24px;
+  }
+
+  .rgp .header-tag-and-title .header-tag-and-title__body--large p,
+  .header-tag-and-title .header-tag-and-title__body--large p,
+  .intro-editorial-text {
+    font-size: 1.5rem !important;
+    line-height: 1.45 !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .header-tag-and-title h2,
+  .intro-title {
+    font-size: 34px;
+  }
+
+  .rgp .header-tag-and-title .header-tag-and-title__body--large p,
+  .header-tag-and-title .header-tag-and-title__body--large p,
+  .intro-editorial-text {
+    font-size: 1.25rem !important;
+    line-height: 1.5 !important;
   }
 }
 

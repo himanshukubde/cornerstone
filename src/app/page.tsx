@@ -418,38 +418,40 @@ export default function Home() {
       <Hero />
       <TrustBar />
 
-      {/* What We Do / Building Today for a Better Tomorrow (RGP Matched Editorial Split) */}
-      <section className="intro-section" id="what-we-do">
-        <motion.div
-          className="intro-left"
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.55 }}
-        >
-          <span className="intro-eyebrow">WHAT WE DO</span>
-          <h2 className="intro-title">
-            Building Today for a<br />Better Tomorrow.
-          </h2>
-          <Link href="/services" className="intro-cta">
-            <span>Explore How We Help</span>
-            <span className="intro-cta-box" aria-hidden="true">
-              <ArrowRight size={15} strokeWidth={2.5} />
-            </span>
-          </Link>
-        </motion.div>
+      {/* What We Do / Building Today for a Better Tomorrow (Exact RGP Layout & Typography) */}
+      <section className="rgp-home-intro rgp" id="what-we-do">
+        <div className="header-tag-and-title">
+          <motion.div
+            className="header-tag-and-title__left"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55 }}
+          >
+            <p className="header-tag">what we do</p>
+            <h2>
+              Building Today for a<br />Better Tomorrow.
+            </h2>
+            <Link href="/services" className="arrow-cta__link">
+              <span>Explore How We Help</span>
+              <span className="arrow-cta__icon" aria-hidden="true">
+                <ArrowRight size={15} strokeWidth={2.5} />
+              </span>
+            </Link>
+          </motion.div>
 
-        <motion.div
-          className="intro-right"
-          initial={{ opacity: 0, y: 18 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.55, delay: 0.1 }}
-        >
-          <p className="intro-editorial-text">
-            A better way to build for tomorrow starts with a different kind of partner. Cornerstone brings together people, insight, technology, and execution to help organizations navigate the complexities of today’s workforce. From talent and early careers to workforce strategy, compliance, accounting, tax, and immigration, we work across the business to turn complex challenges into practical outcomes. We work with you, not simply for you, bringing the experience and perspective needed to make better decisions, execute with confidence, and build an organization ready for what comes next.
-          </p>
-        </motion.div>
+          <motion.div
+            className="header-tag-and-title__body header-tag-and-title__body--large"
+            initial={{ opacity: 0, y: 18 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.55, delay: 0.1 }}
+          >
+            <p>
+              A better way to build for tomorrow starts with a different kind of partner. Cornerstone brings together people, insight, technology, and execution to help organizations navigate the complexities of today’s workforce. From talent and early careers to workforce strategy, compliance, accounting, tax, and immigration, we work across the business to turn complex challenges into practical outcomes. We work with you, not simply for you, bringing the experience and perspective needed to make better decisions, execute with confidence, and build an organization ready for what comes next.
+            </p>
+          </motion.div>
+        </div>
       </section>
 
       {/* Capabilities 4-column Full-Bleed Tiles */}
