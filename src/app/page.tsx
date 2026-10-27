@@ -8,6 +8,7 @@ import {
   ChevronRight,
 } from "lucide-react";
 import { useEffect, useState } from "react";
+import Link from "next/link";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { CornerstoneLogo } from "@/components/ui/cornerstone-logo";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
@@ -417,31 +418,38 @@ export default function Home() {
       <Hero />
       <TrustBar />
 
-      {/* What We Do / Dare to Work Differently */}
+      {/* What We Do / Building Today for a Better Tomorrow (RGP Matched Editorial Split) */}
       <section className="intro-section" id="what-we-do">
-        <div className="intro-copy">
-          <span className="eyebrow">what we do</span>
-          <h2>
-            Dare to Work<br />Differently<sup>®</sup>
+        <motion.div
+          className="intro-left"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55 }}
+        >
+          <span className="intro-eyebrow">WHAT WE DO</span>
+          <h2 className="intro-title">
+            Building Today for a<br />Better Tomorrow.
           </h2>
-          <p>
-            A better way to work starts with a different kind of partner. At
-            Cornerstone, we deliver leaders who’ve been in your shoes and are
-            ready to support your enterprise to get things done. From strategy to
-            execution, we make transformation happen your way.
+          <Link href="/services" className="intro-cta">
+            <span>Explore How We Help</span>
+            <span className="intro-cta-box" aria-hidden="true">
+              <ArrowRight size={15} strokeWidth={2.5} />
+            </span>
+          </Link>
+        </motion.div>
+
+        <motion.div
+          className="intro-right"
+          initial={{ opacity: 0, y: 18 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
+          transition={{ duration: 0.55, delay: 0.1 }}
+        >
+          <p className="intro-editorial-text">
+            A better way to build for tomorrow starts with a different kind of partner. Cornerstone brings together people, insight, technology, and execution to help organizations navigate the complexities of today’s workforce. From talent and early careers to workforce strategy, compliance, accounting, tax, and immigration, we work across the business to turn complex challenges into practical outcomes. We work with you, not simply for you, bringing the experience and perspective needed to make better decisions, execute with confidence, and build an organization ready for what comes next.
           </p>
-          <a className="text-link" href="#capabilities">
-            Explore How We Work <ArrowRight size={17} />
-          </a>
-        </div>
-        <div className="intro-mark" aria-hidden="true">
-          <div className="intro-mark-logo">
-            <CornerstoneLogo variant="dark" height={28} />
-          </div>
-          <i>
-            People.<br />Purpose.<br />Possibility.
-          </i>
-        </div>
+        </motion.div>
       </section>
 
       {/* Capabilities 4-column Full-Bleed Tiles */}
