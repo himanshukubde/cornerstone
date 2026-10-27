@@ -33,6 +33,7 @@ export function CornerstoneLogo({
         width: "auto",
         maxWidth: "100%",
         objectFit: "contain",
+        objectPosition: "left center",
         display: "block",
         ...style,
       }}

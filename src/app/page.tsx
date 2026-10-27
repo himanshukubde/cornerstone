@@ -14,60 +14,55 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 
 const slides = [
   {
-    category: "Research",
-    title: "The Human Value Gap in M&A",
-    subtitle: "Why Culture and Talent Drive Deal Value",
-    action: "Read Now",
-    href: "#what-we-do",
-    image: "https://rgp.com/wp-content/uploads/2026/08/ma_main_carousel.jpg",
+    number: "01",
+    category: "01 / TALENT INTELLIGENCE",
+    title: "BETTER DATA.\nBETTER DECISIONS.",
+    lead: "",
+    subtitle:
+      "We use recruiting data, market intelligence and technology to understand where demand is, identify relevant talent and make every search more focused. But data is only the starting point. Our recruiters bring the experience, context and human judgment needed to turn information into the right hiring decision.",
+    tagline: "Data informs the search. People make the connection.",
+    action: "Discover Talent Intelligence",
+    href: "/services",
+    image: "/images/hero/hero-slide-1.jpg",
   },
   {
-    category: "Research",
-    title: "Foundational Divide",
-    subtitle: "From AI Ambition to AI Readiness",
-    action: "Explore the Research",
-    href: "#what-we-do",
-    image: "https://rgp.com/wp-content/uploads/2025/12/From-AI-Ambition-to-AI-Readiness.jpg",
+    number: "02",
+    category: "02 / OUR PHILOSOPHY",
+    title: "99% Human. 1% AI. 100% Recruiting.",
+    lead:
+      "Because technology can find a profile. A recruiter can understand a person. And when the stakes are someone's career, that distinction still matters.",
+    subtitle:
+      "99% Human. 1% AI. is not a measurement. It is a statement about how we believe recruitment should work. We use AI where it creates efficiency: finding information, organizing data, identifying relevant opportunities and reducing repetitive work. But the decisions that define great recruitment remain human—understanding ambition, recognizing potential beyond a résumé, building trust, reading context and knowing when a candidate is right for an organization. AI helps our recruiters work faster. Human judgment makes the recruitment meaningful.",
+    tagline: "We keep recruitment human, and intend to keep it that way.",
+    action: "Explore Our Philosophy",
+    href: "/about",
+    image: "/images/hero/hero-slide-2.jpg",
   },
   {
-    category: "Solutions",
-    title: "Cornerstone Streamline 360™",
-    subtitle: "Modernize your finance function with confidence.",
-    action: "Discover Streamline 360",
-    href: "#capabilities",
-    image: "https://rgp.com/wp-content/uploads/2026/08/streamline360.jpg",
+    number: "03",
+    category: "03 / WORKFORCE COMPLIANCE",
+    title: "Compliance. Handled with Precision.",
+    lead: "",
+    subtitle:
+      "Managing a workforce today requires more than finding the right people. It requires a clear understanding of workforce strategy, regulatory requirements, accounting practices, tax policies, and immigration considerations. We bring structure and precision to the details that keep organizations compliant and their workforce moving forward, from employment and payroll requirements to worker classification, tax obligations, documentation, and immigration processes.",
+    tagline:
+      "Industry knowledge, disciplined processes & technology to reduce risk and make confident workforce decisions.",
+    action: "Compliance Solutions",
+    href: "/services",
+    image: "/images/hero/hero-slide-3.jpg",
   },
   {
-    category: "Visionary Voices",
-    title: "Shape the Future of Finance 4.0",
-    subtitle: "The people and ideas reshaping finance.",
-    action: "Watch Now",
-    href: "#what-we-do",
-    image: "https://rgp.com/wp-content/uploads/2025/09/Finance-4.0-RGP-Home-Carousel.jpg",
-  },
-  {
-    category: "Research",
-    title: "Compliance Without Compromise",
-    subtitle: "How Finance 4.0 orchestrates enterprise transformation.",
-    action: "Read Report",
-    href: "#what-we-do",
-    image: "https://rgp.com/wp-content/uploads/2025/09/Finance-4.0-RGP-Home-Carousel.jpg",
-  },
-  {
-    category: "Solutions",
-    title: "From Gatekeeper to Architect",
-    subtitle: "Empowering talent to drive operational excellence.",
-    action: "Hire Top Talent",
-    href: "#what-we-do",
-    image: "https://rgp.com/wp-content/uploads/2025/09/Tax-RGP-Home-Carousel-copy.jpg",
-  },
-  {
-    category: "Visionary Voices",
-    title: "The Speed of Change",
-    subtitle: "AI Strategy Timelines are Measured in Months, Not Years",
-    action: "Join the Conversation",
-    href: "#what-we-do",
-    image: "https://rgp.com/wp-content/uploads/2025/09/Elons-VV-RGP-Home-Carousel.jpg",
+    number: "04",
+    category: "04 / WORKFORCE ARCHITECTURE",
+    title: "EARLY CAREERS TO ARCHITECTING ORGANIZATIONS.",
+    lead: "",
+    subtitle:
+      "From early-career talent to the people, structures, and strategies that shape an organization, we look at the workforce as a whole. We help organizations build talent pipelines, develop early-career programs, strengthen workforce strategy, and align people with the skills and capabilities needed for what comes next. Whether supporting the first step of a career or helping architect the workforce behind a growing organization, our focus remains the same: building the right people, in the right roles, at the right time.",
+    tagline:
+      "Whether you are building your career or building your organization, let’s build what comes next together.",
+    action: "Build What's Next",
+    href: "/contact",
+    image: "/images/hero/hero-slide-4.jpg",
   },
 ];
 
@@ -158,87 +153,173 @@ function Hero() {
   const changeSlide = (direction: number) =>
     setActive((index) => (index + direction + slides.length) % slides.length);
 
+  const nextIndex1 = (active + 1) % slides.length;
+  const nextIndex2 = (active + 2) % slides.length;
+
   return (
     <section className="hero" id="top" aria-label="Featured stories">
-      <AnimatePresence mode="wait">
+      <AnimatePresence>
         <motion.div
           key={active}
           className="hero-image"
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(8, 14, 28, .84) 0%, rgba(8, 14, 28, .5) 45%, rgba(8, 14, 28, .08) 100%), linear-gradient(0deg, rgba(8, 12, 22, .4), transparent 45%), url("${slides[active].image}")`,
+            backgroundImage: `linear-gradient(90deg, rgba(8, 14, 28, .88) 0%, rgba(8, 14, 28, .6) 50%, rgba(8, 14, 28, .15) 100%), linear-gradient(0deg, rgba(8, 12, 22, .5), transparent 45%), url("${slides[active].image}")`,
           }}
-          initial={{ opacity: 0, scale: 1.02 }}
-          animate={{ opacity: 1, scale: 1 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.75, ease: "easeOut" }}
+          transition={{ duration: 0.6, ease: "easeInOut" }}
         />
       </AnimatePresence>
+
       <div className="hero-content">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={`copy-${active}`}
-            className="hero-copy"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.35 }}
-          >
-            <span className="eyebrow hero-eyebrow">
-              {slides[active].category}
-            </span>
-            <h1>{slides[active].title}</h1>
-            <p>{slides[active].subtitle}</p>
-            <a
-              className={buttonVariants({ variant: "primary", size: "lg" })}
-              href={slides[active].href}
-            >
-              {slides[active].action}
-              <ArrowRight size={16} />
-            </a>
-          </motion.div>
-        </AnimatePresence>
-        <div className="hero-bottom">
-          <div className="slide-pager" aria-label="Choose featured story">
-            {slides.map((slide, index) => (
-              <button
-                key={slide.title}
-                className={`slide-dot ${index === active ? "is-active" : ""}`}
-                onClick={() => setActive(index)}
-                aria-label={`Show slide ${index + 1}: ${slide.title}`}
-                aria-current={index === active}
+        <div className="hero-grid">
+          <div className="hero-copy-container">
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={`copy-${active}`}
+                className="hero-copy"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeInOut" }}
               >
-                <span>{String(index + 1).padStart(2, "0")}</span>
-                <i>
-                  <b style={{ transform: `scaleX(${index === active ? 1 : 0})` }} />
-                </i>
+                <span className="eyebrow hero-eyebrow">
+                  {slides[active].category}
+                </span>
+                <h1>
+                  {slides[active].title.split("\n").map((line, i) => (
+                    <span key={i} style={{ display: "block" }}>
+                      {line}
+                    </span>
+                  ))}
+                </h1>
+                {slides[active].lead && (
+                  <p className="hero-lead">{slides[active].lead}</p>
+                )}
+                <p className="hero-desc">{slides[active].subtitle}</p>
+                {slides[active].tagline && (
+                  <div className="hero-tagline-box">
+                    <span className="hero-tagline-bar" />
+                    <p className="hero-tagline">{slides[active].tagline}</p>
+                  </div>
+                )}
+                <div style={{ marginTop: "16px" }}>
+                  <a
+                    className={buttonVariants({ variant: "primary", size: "lg" })}
+                    href={slides[active].href}
+                  >
+                    <span>{slides[active].action}</span>
+                    <ArrowRight size={16} />
+                  </a>
+                </div>
+              </motion.div>
+            </AnimatePresence>
+          </div>
+
+          <div className="hero-thumb-cards" aria-label="Upcoming stories">
+            {[nextIndex1, nextIndex2].map((idx) => (
+              <button
+                key={slides[idx].title}
+                type="button"
+                className="hero-thumb-card"
+                onClick={() => setActive(idx)}
+                aria-label={`Jump to ${slides[idx].title}`}
+              >
+                <div
+                  className="hero-thumb-img"
+                  style={{ backgroundImage: `url("${slides[idx].image}")` }}
+                />
+                <div className="hero-thumb-info">
+                  <span className="hero-thumb-tag">{slides[idx].category}</span>
+                  <span className="hero-thumb-title">
+                    {slides[idx].title.replace("\n", " ")}
+                  </span>
+                  <span className="hero-thumb-link">
+                    Explore story <ArrowRight size={13} />
+                  </span>
+                </div>
               </button>
             ))}
           </div>
-          <div className="slide-controls">
-            <button
-              type="button"
-              className="hero-arrow"
-              aria-label="Previous slide"
-              onClick={() => changeSlide(-1)}
+        </div>
+
+        <div className="hero-bottom">
+          <div className="hero-progress-segments" aria-label="Story progress indicators">
+            {slides.map((slide, index) => (
+              <button
+                key={slide.title}
+                type="button"
+                className={`hero-segment ${index === active ? "is-active" : ""}`}
+                onClick={() => setActive(index)}
+                aria-label={`Slide ${index + 1}: ${slide.title}`}
+                aria-current={index === active}
+              />
+            ))}
+          </div>
+
+          <div className="slide-controls" style={{ display: "flex", alignItems: "center", gap: "16px" }}>
+            <span
+              style={{
+                fontFamily: "var(--font-heading)",
+                fontSize: "13px",
+                fontWeight: 600,
+                letterSpacing: "1px",
+                color: "rgba(255, 255, 255, 0.75)",
+              }}
             >
-              <ChevronLeft size={20} />
-            </button>
-            <button
-              type="button"
-              className="hero-arrow"
-              aria-label="Next slide"
-              onClick={() => changeSlide(1)}
-            >
-              <ChevronRight size={20} />
-            </button>
+              0{active + 1} / 0{slides.length}
+            </span>
+            <div style={{ display: "flex", gap: "8px" }}>
+              <button
+                type="button"
+                className="hero-arrow"
+                aria-label="Previous slide"
+                onClick={() => changeSlide(-1)}
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                type="button"
+                className="hero-arrow"
+                aria-label="Next slide"
+                onClick={() => changeSlide(1)}
+              >
+                <ChevronRight size={20} />
+              </button>
+            </div>
           </div>
         </div>
       </div>
-      <a className="scroll-cue" href="#what-we-do">
-        <span>Scroll to explore</span>
-        <ArrowDown size={15} />
-      </a>
     </section>
+  );
+}
+
+function TrustBar() {
+  return (
+    <div className="trust-bar" aria-label="Enterprise credentials">
+      <div className="trust-bar-inner">
+        <span className="trust-bar-label">ENTERPRISE PARTNER OF CHOICE</span>
+        <div className="trust-stats-items">
+          <div className="trust-item">
+            <b>90%</b>
+            <span>of Fortune 100 Served</span>
+          </div>
+          <div className="trust-item">
+            <b>70%</b>
+            <span>of Fortune 500 Worldwide</span>
+          </div>
+          <div className="trust-item">
+            <b>1,500+</b>
+            <span>Global Enterprise Clients</span>
+          </div>
+          <div className="trust-item">
+            <b>Forbes</b>
+            <span>World&apos;s Best Management Consulting</span>
+          </div>
+        </div>
+      </div>
+    </div>
   );
 }
 
@@ -334,6 +415,7 @@ export default function Home() {
     <main>
       <SiteHeader />
       <Hero />
+      <TrustBar />
 
       {/* What We Do / Dare to Work Differently */}
       <section className="intro-section" id="what-we-do">
@@ -443,7 +525,7 @@ export default function Home() {
           </h2>
           <p>Creating a balance between concentration and specialization.</p>
           <a
-            className={buttonVariants({ variant: "primary" })}
+            className={buttonVariants({ variant: "primary", size: "default" })}
             href="#what-we-do"
           >
             Read now <ArrowRight size={16} />
