@@ -591,21 +591,13 @@ export function SiteHeader() {
               </ul>
             </nav>
 
-            {/* Mobile hamburger */}
-            <div className="lg:hidden flex items-center gap-3">
+            {/* Mobile Nav Toggle (Hidden on desktop, clean icon on mobile) */}
+            <div className="rgp-mobile-actions">
               <button
                 type="button"
-                className="p-2 text-gray-700"
-                onClick={() => setSearchOpen(true)}
-                aria-label="Search"
-              >
-                <Search size={20} />
-              </button>
-              <button
-                type="button"
-                className="p-2 text-gray-700"
+                className="rgp-mobile-toggle"
                 onClick={() => setMobileOpen(true)}
-                aria-label="Menu"
+                aria-label="Open navigation menu"
               >
                 <Menu size={24} />
               </button>

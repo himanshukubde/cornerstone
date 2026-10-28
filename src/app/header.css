@@ -716,11 +716,34 @@
   padding-left: 28px;
 }
 
+/* Mobile Actions Toggle */
+.rgp-mobile-actions {
+  display: none !important;
+}
+
+.rgp-mobile-toggle {
+  background: transparent !important;
+  border: none !important;
+  box-shadow: none !important;
+  outline: none !important;
+  padding: 6px !important;
+  color: var(--color-dark, #121212) !important;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 @media (max-width: 1024px) {
   .rgp-primary-nav {
-    display: none;
+    display: none !important;
   }
   .rgp-mega-panel {
-    display: none;
+    display: none !important;
+  }
+  .rgp-mobile-actions {
+    display: flex !important;
+    align-items: center;
+    gap: 12px;
   }
 }
