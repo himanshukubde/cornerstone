@@ -115,7 +115,7 @@ const stats = [
   {
     label: "GLOBAL REACH",
     value: "1,500+",
-    detail: "Clients Across 4 Regions, 37+ Countries & 17 Industries",
+    detail: "Clients Across 4 Regions & 10 Industries",
   },
 ];
 
