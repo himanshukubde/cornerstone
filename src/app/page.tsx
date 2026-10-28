@@ -17,9 +17,9 @@ const slides = [
   {
     number: "01",
     category: "01 / TALENT INTELLIGENCE",
-    title: "BETTER DATA.\nBETTER DECISIONS.",
+    title: "Better Data.\nBetter Decisions.",
     subhead: "Data informs the search. People make the connection.",
-    desc: "We use market intelligence and advanced recruiting technology to find exceptional talent. But data is only the starting point—senior recruiters bring the judgment needed to make the right hiring decisions.",
+    desc: "We pair deep market intelligence with seasoned recruiter discernment. Data isolates the opportunity—human judgment ensures the right leadership and cultural fit.",
     action: "Discover Talent Intelligence",
     href: "/services",
     image: "/images/hero/hero-slide-1.jpg",
@@ -29,7 +29,7 @@ const slides = [
     category: "02 / OUR PHILOSOPHY",
     title: "99% Human. 1% AI.\n100% Recruiting.",
     subhead: "Technology can find a profile. A recruiter understands a person.",
-    desc: "When the stakes are someone's career and an organization's future, human context, trust, and judgment still matter. We keep recruitment human, and intend to keep it that way.",
+    desc: "When the stakes are careers and enterprise growth, human context and trust cannot be automated. We keep recruitment authentically human.",
     action: "Explore Our Philosophy",
     href: "/about",
     image: "/images/hero/hero-slide-2.jpg",
@@ -37,9 +37,9 @@ const slides = [
   {
     number: "03",
     category: "03 / WORKFORCE COMPLIANCE",
-    title: "Compliance.\nHandled with Precision.",
-    subhead: "Structure and precision to keep your workforce moving forward.",
-    desc: "Bringing disciplined processes, regulatory clarity, accounting practices, and immigration support to reduce risk and make confident workforce decisions.",
+    title: "Workforce Compliance.\nHandled with Precision.",
+    subhead: "Structure, clarity, and discipline to keep operations moving forward.",
+    desc: "From regulatory frameworks and tax governance to immigration advisory, we de-risk talent operations so leadership can scale with complete confidence.",
     action: "Compliance Solutions",
     href: "/services",
     image: "/images/hero/hero-slide-3.jpg",
@@ -47,9 +47,9 @@ const slides = [
   {
     number: "04",
     category: "04 / WORKFORCE ARCHITECTURE",
-    title: "EARLY CAREERS TO\nARCHITECTING ORGANIZATIONS.",
-    subhead: "Building the right people, in the right roles, at the right time.",
-    desc: "From building early-career talent pipelines to architecting the people, structures, and capabilities behind growing enterprise organizations.",
+    title: "From Early Careers\nto Enterprise Architecture.",
+    subhead: "Building the right capabilities in the right roles at the right time.",
+    desc: "From emerging talent pipelines to architecting high-performance organizational structures for global enterprise leaders.",
     action: "Build What's Next",
     href: "/contact",
     image: "/images/hero/hero-slide-4.jpg",
@@ -174,7 +174,8 @@ function Hero() {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
               >
                 <span className="hero-tag">
-                  {slides[active].category}
+                  <span className="hero-tag-dot" aria-hidden="true" />
+                  <span>{slides[active].category}</span>
                 </span>
                 <h1 className="hero-title">
                   {slides[active].title.split("\n").map((line, i) => (
@@ -189,14 +190,14 @@ function Hero() {
                 {slides[active].desc && (
                   <p className="hero-desc">{slides[active].desc}</p>
                 )}
-                <div style={{ marginTop: "24px" }}>
+                <div style={{ marginTop: "28px" }}>
                   <a
                     className="rgp-cta-btn"
                     href={slides[active].href}
                   >
                     <span>{slides[active].action}</span>
-                    <span className="arrow-cta__icon">
-                      <ArrowRight size={14} />
+                    <span className="arrow-cta__icon" aria-hidden="true">
+                      <ArrowRight size={14} strokeWidth={2.5} />
                     </span>
                   </a>
                 </div>
@@ -284,7 +285,10 @@ function TrustBar() {
   return (
     <div className="trust-bar" aria-label="Enterprise credentials">
       <div className="trust-bar-inner">
-        <span className="trust-bar-label">ENTERPRISE PARTNER OF CHOICE</span>
+        <div className="trust-bar-badge">
+          <span className="trust-bar-dot" aria-hidden="true" />
+          <span className="trust-bar-label">ENTERPRISE PARTNER OF CHOICE</span>
+        </div>
         <div className="trust-stats-items">
           <div className="trust-item">
             <b>90%</b>
@@ -432,7 +436,7 @@ export default function Home() {
             transition={{ duration: 0.55, delay: 0.1 }}
           >
             <p>
-              A better way to build for tomorrow starts with a different kind of partner. Cornerstone brings together people, insight, technology, and execution to help organizations navigate the complexities of today’s workforce. From talent and early careers to workforce strategy, compliance, accounting, tax, and immigration, we work across the business to turn complex challenges into practical outcomes. We work with you, not simply for you, bringing the experience and perspective needed to make better decisions, execute with confidence, and build an organization ready for what comes next.
+              A better way to build for tomorrow starts with a different kind of partner. Cornerstone brings together people, insight, technology, and execution to help organizations navigate the complexities of today’s workforce. From talent and early careers to workforce strategy, compliance, accounting, tax, and immigration, we work across the business to turn complex challenges into practical outcomes.
             </p>
           </motion.div>
         </div>
