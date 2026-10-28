@@ -1109,7 +1109,7 @@ a {
   }
 }
 
-/* Key Highlights (RGP-matched Statistics 2x2 Layout) */
+/* Key Highlights (RGP-matched Statistics Layout) */
 .highlights-section {
   max-width: 1320px;
   margin: 0 auto;
@@ -1118,7 +1118,7 @@ a {
   grid-template-columns: 5fr 7fr;
   column-gap: 60px;
   row-gap: 40px;
-  align-items: start;
+  align-items: center;
   background-color: #FFFFFF;
   font-family: var(--font-poppins), 'Poppins', sans-serif !important;
 }
