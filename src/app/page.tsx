@@ -117,16 +117,6 @@ const stats = [
     value: "1,500+",
     detail: "Clients Across 4 Regions, 37+ Countries & 17 Industries",
   },
-  {
-    label: "AWARD-WINNING",
-    value: "Forbes",
-    detail: "Recognized as World’s Best Management Consulting Firms",
-  },
-  {
-    label: "ENGAGEMENTS",
-    value: "340K+",
-    detail: "Projects Completed by 2,600+ Senior Consultants Globally",
-  },
 ];
 
 function Hero() {
