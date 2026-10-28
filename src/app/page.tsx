@@ -58,24 +58,24 @@ const slides = [
 
 const capabilities = [
   {
-    label: "Capabilities",
-    image: "https://rgp.com/wp-content/uploads/2025/07/homepage-csuite-strategies-1.jpg",
-    href: "#capabilities",
+    label: "Services",
+    image: "/images/capabilities/tile-services.jpg",
+    href: "/services",
   },
   {
-    label: "C-Suite Strategies",
-    image: "https://rgp.com/wp-content/uploads/2025/07/homepage-csuite-strategies-2.jpg",
-    href: "#capabilities",
+    label: "Industry",
+    image: "/images/capabilities/tile-industry.jpg",
+    href: "/industry",
   },
   {
-    label: "Industries",
-    image: "https://rgp.com/wp-content/uploads/2025/07/homepage-csuite-strategies-3.jpg",
-    href: "#capabilities",
+    label: "Assessment & Enrollment",
+    image: "/images/capabilities/tile-assessment.jpg",
+    href: "/contact#assessment-enrollment",
   },
   {
-    label: "Technologies",
-    image: "https://rgp.com/wp-content/uploads/2025/07/homepage-csuite-strategies-4.jpg",
-    href: "#capabilities",
+    label: "Jobs",
+    image: "/images/capabilities/tile-jobs.jpg",
+    href: "/contact",
   },
 ];
 
