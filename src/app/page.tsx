@@ -152,7 +152,7 @@ function Hero() {
           key={active}
           className="hero-image"
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(7, 12, 24, 0.78) 0%, rgba(7, 12, 24, 0.35) 45%, rgba(7, 12, 24, 0) 75%), url("${slides[active].image}")`,
+            backgroundImage: `linear-gradient(90deg, rgba(7, 12, 24, 0.94) 0%, rgba(7, 12, 24, 0.88) 32%, rgba(7, 12, 24, 0.55) 48%, rgba(7, 12, 24, 0.12) 64%, rgba(7, 12, 24, 0) 76%), url("${slides[active].image}")`,
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
