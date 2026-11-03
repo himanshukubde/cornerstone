@@ -3,6 +3,8 @@ import { Poppins, Libre_Baskerville } from "next/font/google";
 import "./globals.css";
 import "./header.css";
 import "./contact.css";
+import "./admin.css";
+import "./jobs.css";
 
 const poppins = Poppins({
   variable: "--font-poppins",

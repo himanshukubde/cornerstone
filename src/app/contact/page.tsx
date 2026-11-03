@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 import {
   Phone,
@@ -12,6 +12,7 @@ import {
   ArrowRight,
   Loader2,
   Users,
+  AlertCircle,
 } from "lucide-react";
 import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 import { CornerstoneLogo } from "@/components/ui/cornerstone-logo";
@@ -19,6 +20,8 @@ import { CornerstoneLogo } from "@/components/ui/cornerstone-logo";
 export default function ContactPage() {
   const [submitted, setSubmitted] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [apiError, setApiError] = useState<string | null>(null);
+  const [errors, setErrors] = useState<Record<string, string>>({});
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -31,19 +34,98 @@ export default function ContactPage() {
     comments: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // Check URL params for subject if navigated from Jobs page
+  useEffect(() => {
+    if (typeof window !== "undefined") {
+      const params = new URLSearchParams(window.location.search);
+      const subject = params.get("subject");
+      if (subject) {
+        setFormData((prev) => ({
+          ...prev,
+          practice: "talent",
+          comments: `[${subject}]\n\nI am submitting my credentials and would like to be considered for this mandate.`,
+        }));
+      }
+    }
+  }, []);
+
+  const validate = () => {
+    const newErrors: Record<string, string> = {};
+
+    if (!formData.name.trim() || formData.name.trim().length < 2) {
+      newErrors.name = "Full Name must be at least 2 characters long.";
+    }
+
+    const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    if (!formData.email.trim() || !emailRegex.test(formData.email.trim())) {
+      newErrors.email = "Please enter a valid corporate email address.";
+    }
+
+    if (!formData.company.trim() || formData.company.trim().length < 2) {
+      newErrors.company = "Company or Organization name is required.";
+    }
+
+    if (!formData.country.trim()) {
+      newErrors.country = "Country is required.";
+    }
+
+    if (!formData.city.trim()) {
+      newErrors.city = "City is required.";
+    }
+
+    if (!formData.comments.trim() || formData.comments.trim().length < 10) {
+      newErrors.comments = "Project scope must be at least 10 characters.";
+    }
+
+    if (formData.phone.trim()) {
+      const cleanPhone = formData.phone.replace(/[\s()-]/g, "");
+      if (cleanPhone.length < 7 || cleanPhone.length > 15) {
+        newErrors.phone = "Please enter a valid phone number.";
+      }
+    }
+
+    setErrors(newErrors);
+    return Object.keys(newErrors).length === 0;
+  };
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setApiError(null);
+
+    if (!validate()) {
+      return;
+    }
+
     setLoading(true);
 
-    // Instantaneous enterprise submission simulation
-    setTimeout(() => {
-      setLoading(false);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(formData),
+      });
+
+      const data = await res.json();
+
+      if (!res.ok) {
+        if (data.details) {
+          setErrors(data.details);
+        }
+        throw new Error(data.error || "Failed to process inquiry. Please try again.");
+      }
+
       setSubmitted(true);
-    }, 600);
+    } catch (err: unknown) {
+      setApiError(err instanceof Error ? err.message : "Error submitting consultation inquiry.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   const handleReset = () => {
     setSubmitted(false);
+    setApiError(null);
+    setErrors({});
     setFormData({
       name: "",
       email: "",
@@ -212,7 +294,7 @@ export default function ContactPage() {
                 </button>
               </div>
             ) : (
-              <form onSubmit={handleSubmit}>
+              <form onSubmit={handleSubmit} noValidate>
                 <div className="cs-form-card__header">
                   <h3 className="cs-form-card__title">
                     Request an Executive Consultation
@@ -224,6 +306,16 @@ export default function ContactPage() {
                     <span className="req">*</span> indicates a required field
                   </div>
                 </div>
+
+                {apiError && (
+                  <div className="mb-6 p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-start gap-2.5">
+                    <AlertCircle size={16} className="shrink-0 mt-0.5 text-rose-400" />
+                    <div>
+                      <strong className="font-semibold block mb-0.5">Submission Notice</strong>
+                      {apiError}
+                    </div>
+                  </div>
+                )}
 
                 {/* Row 1: Name & Business Email */}
                 <div className="cs-form-row">
@@ -237,9 +329,17 @@ export default function ContactPage() {
                       required
                       placeholder="e.g. Eleanor Vance"
                       value={formData.name}
-                      onChange={(e) => setFormData({ ...formData, name: e.target.value })}
-                      className="cs-input"
+                      onChange={(e) => {
+                        setFormData({ ...formData, name: e.target.value });
+                        if (errors.name) setErrors({ ...errors, name: "" });
+                      }}
+                      className={`cs-input ${errors.name ? "!border-rose-500" : ""}`}
                     />
+                    {errors.name && (
+                      <span className="text-rose-400 text-xs mt-1.5 block font-medium">
+                        {errors.name}
+                      </span>
+                    )}
                   </div>
 
                   <div>
@@ -252,9 +352,17 @@ export default function ContactPage() {
                       required
                       placeholder="you@company.com"
                       value={formData.email}
-                      onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-                      className="cs-input"
+                      onChange={(e) => {
+                        setFormData({ ...formData, email: e.target.value });
+                        if (errors.email) setErrors({ ...errors, email: "" });
+                      }}
+                      className={`cs-input ${errors.email ? "!border-rose-500" : ""}`}
                     />
+                    {errors.email && (
+                      <span className="text-rose-400 text-xs mt-1.5 block font-medium">
+                        {errors.email}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -270,9 +378,17 @@ export default function ContactPage() {
                       required
                       placeholder="e.g. Vanguard Health"
                       value={formData.company}
-                      onChange={(e) => setFormData({ ...formData, company: e.target.value })}
-                      className="cs-input"
+                      onChange={(e) => {
+                        setFormData({ ...formData, company: e.target.value });
+                        if (errors.company) setErrors({ ...errors, company: "" });
+                      }}
+                      className={`cs-input ${errors.company ? "!border-rose-500" : ""}`}
                     />
+                    {errors.company && (
+                      <span className="text-rose-400 text-xs mt-1.5 block font-medium">
+                        {errors.company}
+                      </span>
+                    )}
                   </div>
 
                   <div>
@@ -302,9 +418,17 @@ export default function ContactPage() {
                       required
                       placeholder="e.g. United States"
                       value={formData.country}
-                      onChange={(e) => setFormData({ ...formData, country: e.target.value })}
-                      className="cs-input"
+                      onChange={(e) => {
+                        setFormData({ ...formData, country: e.target.value });
+                        if (errors.country) setErrors({ ...errors, country: "" });
+                      }}
+                      className={`cs-input ${errors.country ? "!border-rose-500" : ""}`}
                     />
+                    {errors.country && (
+                      <span className="text-rose-400 text-xs mt-1.5 block font-medium">
+                        {errors.country}
+                      </span>
+                    )}
                   </div>
 
                   <div>
@@ -317,9 +441,17 @@ export default function ContactPage() {
                       required
                       placeholder="e.g. New York"
                       value={formData.city}
-                      onChange={(e) => setFormData({ ...formData, city: e.target.value })}
-                      className="cs-input"
+                      onChange={(e) => {
+                        setFormData({ ...formData, city: e.target.value });
+                        if (errors.city) setErrors({ ...errors, city: "" });
+                      }}
+                      className={`cs-input ${errors.city ? "!border-rose-500" : ""}`}
                     />
+                    {errors.city && (
+                      <span className="text-rose-400 text-xs mt-1.5 block font-medium">
+                        {errors.city}
+                      </span>
+                    )}
                   </div>
                 </div>
 
@@ -334,9 +466,17 @@ export default function ContactPage() {
                       type="tel"
                       placeholder="(999) 999-9999"
                       value={formData.phone}
-                      onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
-                      className="cs-input"
+                      onChange={(e) => {
+                        setFormData({ ...formData, phone: e.target.value });
+                        if (errors.phone) setErrors({ ...errors, phone: "" });
+                      }}
+                      className={`cs-input ${errors.phone ? "!border-rose-500" : ""}`}
                     />
+                    {errors.phone && (
+                      <span className="text-rose-400 text-xs mt-1.5 block font-medium">
+                        {errors.phone}
+                      </span>
+                    )}
                   </div>
 
                   <div>
@@ -369,9 +509,17 @@ export default function ContactPage() {
                     rows={4}
                     placeholder="Briefly describe your objectives, operational challenges, or expected timeline..."
                     value={formData.comments}
-                    onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
-                    className="cs-textarea"
+                    onChange={(e) => {
+                      setFormData({ ...formData, comments: e.target.value });
+                      if (errors.comments) setErrors({ ...errors, comments: "" });
+                    }}
+                    className={`cs-textarea ${errors.comments ? "!border-rose-500" : ""}`}
                   />
+                  {errors.comments && (
+                    <span className="text-rose-400 text-xs mt-1.5 block font-medium">
+                      {errors.comments}
+                    </span>
+                  )}
                 </div>
 
                 {/* Submit Action */}

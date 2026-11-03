@@ -42,3 +42,9 @@ next-env.d.ts
 scratch/
 
 .vercel
+
+public/images/capabilities/candidates/
+public/images/capabilities/rgp_hd/
+public/images/capabilities/*-old.jpg
+public/images/hero/*-old.jpg
+

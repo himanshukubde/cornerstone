@@ -16,40 +16,36 @@ import { SiteHeader, SiteFooter } from "@/components/site-chrome";
 const slides = [
   {
     number: "01",
-    category: "01 / TALENT INTELLIGENCE",
+    category: "TALENT INTELLIGENCE",
     title: "Better Data.\nBetter Decisions.",
-    subhead: "Data informs the search. People make the connection.",
-    desc: "We pair deep market intelligence with seasoned recruiter discernment. Data isolates the opportunity—human judgment ensures the right leadership and cultural fit.",
-    action: "Discover Talent Intelligence",
-    href: "/services",
+    subhead: "Pairing deep market intelligence with recruiter discernment to ensure the right leadership and cultural fit.",
+    action: "Hire Top Talent",
+    href: "/contact",
     image: "/images/hero/hero-slide-1.jpg",
   },
   {
     number: "02",
-    category: "02 / OUR PHILOSOPHY",
+    category: "OUR PHILOSOPHY",
     title: "99% Human. 1% AI.\n100% Recruiting.",
-    subhead: "Technology can find a profile. A recruiter understands a person.",
-    desc: "When the stakes are careers and enterprise growth, human context and trust cannot be automated. We keep recruitment authentically human.",
+    subhead: "Technology can find a profile. Human context, judgment, and trust build the enterprise.",
     action: "Explore Our Philosophy",
     href: "/about",
     image: "/images/hero/hero-slide-2.jpg",
   },
   {
     number: "03",
-    category: "03 / WORKFORCE COMPLIANCE",
-    title: "Workforce Compliance.\nHandled with Precision.",
-    subhead: "Structure, clarity, and discipline to keep operations moving forward.",
-    desc: "From regulatory frameworks and tax governance to immigration advisory, we de-risk talent operations so leadership can scale with complete confidence.",
+    category: "WORKFORCE COMPLIANCE",
+    title: "Compliance Without\nCompromise.",
+    subhead: "From regulatory frameworks and tax governance to global advisory, we de-risk operations so enterprise leadership scales with complete confidence.",
     action: "Compliance Solutions",
     href: "/services",
     image: "/images/hero/hero-slide-3.jpg",
   },
   {
     number: "04",
-    category: "04 / WORKFORCE ARCHITECTURE",
+    category: "WORKFORCE ARCHITECTURE",
     title: "From Early Careers\nto Enterprise Architecture.",
-    subhead: "Building the right capabilities in the right roles at the right time.",
-    desc: "From emerging talent pipelines to architecting high-performance organizational structures for global enterprise leaders.",
+    subhead: "From emerging talent pipelines to architecting high-performance organizational structures for global enterprise leaders.",
     action: "Build What's Next",
     href: "/contact",
     image: "/images/hero/hero-slide-4.jpg",
@@ -58,24 +54,24 @@ const slides = [
 
 const capabilities = [
   {
-    label: "Services",
-    image: "/images/capabilities/tile-services.jpg",
+    label: "Capabilities",
+    image: "/images/capabilities/tile-services.jpg?v=3",
     href: "/services",
   },
   {
-    label: "Industry",
-    image: "/images/capabilities/tile-industry.jpg",
+    label: "C-Suite Strategies",
+    image: "/images/capabilities/tile-industry.jpg?v=3",
     href: "/industry",
   },
   {
-    label: "Assessment & Enrollment",
-    image: "/images/capabilities/tile-assessment.jpg",
-    href: "/contact#assessment-enrollment",
+    label: "Industries",
+    image: "/images/capabilities/tile-assessment.jpg?v=3",
+    href: "/services/workforce-compliance",
   },
   {
-    label: "Jobs",
-    image: "/images/capabilities/tile-jobs.jpg",
-    href: "/contact",
+    label: "Technologies",
+    image: "/images/capabilities/tile-jobs.jpg?v=3",
+    href: "/jobs",
   },
 ];
 
@@ -86,7 +82,7 @@ const news = [
       "Cornerstone Study: 66% of Professionals Expect AI to Perform Most of Their Current Tasks Within Five Years, Yet Just 3% Feel Replaceable",
     date: "September 2026",
     href: "#what-we-do",
-    image: "https://rgp.com/wp-content/uploads/2025/12/From-AI-Ambition-to-AI-Readiness.jpg",
+    image: "/images/news/ai-ambition.jpg",
   },
   {
     category: "Press",
@@ -94,7 +90,7 @@ const news = [
       "Cornerstone Reports Financial Results for First Quarter Fiscal Year 2027",
     date: "October 2026",
     href: "#what-we-do",
-    image: "https://rgp.com/wp-content/uploads/2026/08/streamline360.jpg",
+    image: "/images/news/streamline360.jpg",
   },
   {
     category: "Press",
@@ -102,7 +98,7 @@ const news = [
       "Cornerstone to Announce First Quarter Fiscal 2027 Results on October 7, 2026",
     date: "September 2026",
     href: "#what-we-do",
-    image: "https://rgp.com/wp-content/uploads/2025/09/Finance-4.0-RGP-Home-Carousel.jpg",
+    image: "/images/news/finance-4.jpg",
   },
 ];
 
@@ -142,7 +138,7 @@ function Hero() {
           key={active}
           className="hero-image"
           style={{
-            backgroundImage: `linear-gradient(90deg, rgba(7, 12, 24, 0.94) 0%, rgba(7, 12, 24, 0.88) 32%, rgba(7, 12, 24, 0.55) 48%, rgba(7, 12, 24, 0.12) 64%, rgba(7, 12, 24, 0) 76%), url("${slides[active].image}")`,
+            backgroundImage: `linear-gradient(90deg, #02364F 0%, rgba(2, 54, 79, 0.96) 32%, rgba(3, 73, 104, 0.80) 50%, rgba(3, 89, 122, 0.32) 70%, rgba(4, 114, 149, 0.05) 86%, rgba(4, 114, 149, 0) 94%), url("${slides[active].image}")`,
           }}
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -164,8 +160,7 @@ function Hero() {
                 transition={{ duration: 0.4, ease: "easeInOut" }}
               >
                 <span className="hero-tag">
-                  <span className="hero-tag-dot" aria-hidden="true" />
-                  <span>{slides[active].category}</span>
+                  {slides[active].category}
                 </span>
                 <h1 className="hero-title">
                   {slides[active].title.split("\n").map((line, i) => (
@@ -177,93 +172,54 @@ function Hero() {
                 {slides[active].subhead && (
                   <p className="hero-subhead">{slides[active].subhead}</p>
                 )}
-                {slides[active].desc && (
-                  <p className="hero-desc">{slides[active].desc}</p>
-                )}
-                <div style={{ marginTop: "28px" }}>
+                <div className="hero-action-row">
                   <a
                     className="rgp-cta-btn"
                     href={slides[active].href}
                   >
                     <span>{slides[active].action}</span>
-                    <span className="arrow-cta__icon" aria-hidden="true">
-                      <ArrowRight size={14} strokeWidth={2.5} />
-                    </span>
                   </a>
                 </div>
               </motion.div>
             </AnimatePresence>
           </div>
-
-          {/* Floating Next Story Preview Card (Bottom-Right, leaving artwork clear) */}
-          <div className="hero-thumb-nav" aria-label="Next featured story">
-            <button
-              type="button"
-              className="hero-thumb-card"
-              onClick={() => setActive(nextIndex)}
-              aria-label={`Jump to ${slides[nextIndex].title}`}
-            >
-              <div
-                className="hero-thumb-img"
-                style={{ backgroundImage: `url("${slides[nextIndex].image}")` }}
-              />
-              <div className="hero-thumb-info">
-                <span className="hero-thumb-tag">UP NEXT &bull; {slides[nextIndex].category}</span>
-                <span className="hero-thumb-title">
-                  {slides[nextIndex].title.replace("\n", " ")}
-                </span>
-                <span className="hero-thumb-link">
-                  Explore story <ArrowRight size={13} />
-                </span>
-              </div>
-            </button>
-          </div>
         </div>
 
         <div className="hero-bottom">
-          <div className="hero-progress-segments" aria-label="Story progress indicators">
-            {slides.map((slide, index) => (
-              <button
-                key={slide.title}
-                type="button"
-                className={`hero-segment ${index === active ? "is-active" : ""}`}
-                onClick={() => setActive(index)}
-                aria-label={`Slide ${index + 1}: ${slide.title}`}
-                aria-current={index === active}
-              />
-            ))}
+          <div className="hero-slider-nav">
+            <span className="hero-nav-num">0{active + 1}</span>
+            <div className="hero-nav-track" aria-label="Story progress indicators">
+              {slides.map((slide, index) => (
+                <button
+                  key={slide.title}
+                  type="button"
+                  className={`hero-nav-segment ${index === active ? "is-active" : ""}`}
+                  onClick={() => setActive(index)}
+                  aria-label={`Slide ${index + 1}: ${slide.title}`}
+                  aria-current={index === active}
+                />
+              ))}
+            </div>
+            <span className="hero-nav-num hero-nav-total">0{slides.length}</span>
           </div>
 
-          <div className="slide-controls" style={{ display: "flex", alignItems: "center", gap: "16px" }}>
-            <span
-              style={{
-                fontFamily: "var(--font-heading)",
-                fontSize: "13px",
-                fontWeight: 600,
-                letterSpacing: "1px",
-                color: "rgba(255, 255, 255, 0.75)",
-              }}
+          <div className="slide-controls">
+            <button
+              type="button"
+              className="hero-arrow"
+              aria-label="Previous slide"
+              onClick={() => changeSlide(-1)}
             >
-              0{active + 1} / 0{slides.length}
-            </span>
-            <div style={{ display: "flex", gap: "8px" }}>
-              <button
-                type="button"
-                className="hero-arrow"
-                aria-label="Previous slide"
-                onClick={() => changeSlide(-1)}
-              >
-                <ChevronLeft size={20} />
-              </button>
-              <button
-                type="button"
-                className="hero-arrow"
-                aria-label="Next slide"
-                onClick={() => changeSlide(1)}
-              >
-                <ChevronRight size={20} />
-              </button>
-            </div>
+              <ChevronLeft size={18} />
+            </button>
+            <button
+              type="button"
+              className="hero-arrow"
+              aria-label="Next slide"
+              onClick={() => changeSlide(1)}
+            >
+              <ChevronRight size={18} />
+            </button>
           </div>
         </div>
       </div>
@@ -443,19 +399,25 @@ export default function Home() {
             className="capability-tile"
             key={item.label}
             href={item.href}
-            style={{
-              backgroundImage: `url("${item.image}")`,
-            }}
             initial={{ opacity: 0, y: 22 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true, amount: 0.15 }}
             transition={{ delay: index * 0.08, duration: 0.5 }}
           >
+            <div
+              className="capability-bg"
+              style={{
+                backgroundImage: `url("${item.image}")`,
+              }}
+            />
+            <div className="capability-overlay" />
             <span className="capability-index">0{index + 1}</span>
-            <span className="capability-title">
-              {item.label}
-              <ArrowRight size={19} />
-            </span>
+            <div className="capability-content">
+              <h3 className="capability-title">{item.label}</h3>
+              <div className="capability-arrow-btn">
+                <ArrowRight size={18} strokeWidth={2.4} />
+              </div>
+            </div>
           </motion.a>
         ))}
       </section>

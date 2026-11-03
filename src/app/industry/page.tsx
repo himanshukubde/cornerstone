@@ -21,7 +21,7 @@ export default function IndustryPage() {
           className="absolute inset-0 bg-cover bg-center opacity-25"
           style={{
             backgroundImage:
-              'url("https://rgp.com/wp-content/uploads/2025/07/nav_Industry-Overview.jpg")',
+              'url("/images/nav/nav-industry.jpg")',
           }}
         />
         <div className="absolute inset-0 bg-gradient-to-r from-[#0B1120] via-[#0B1120]/90 to-[#0B1120]/60" />

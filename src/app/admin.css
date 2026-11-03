@@ -1,0 +1,614 @@
+/* ==========================================================================
+   Cornerstone Enterprise - Authentic SaaS Admin Panel Stylesheet
+   Modern Corporate Dark Palette: Navy Slate (#070B19) & Electric Gold (#F59E0B)
+   ========================================================================== */
+
+:root {
+  --ap-sidebar-width: 260px;
+  --ap-bg: #070B19;
+  --ap-sidebar-bg: #0B1329;
+  --ap-header-bg: #091024;
+  --ap-card-bg: #0E1833;
+  --ap-card-border: rgba(255, 255, 255, 0.08);
+  --ap-input-bg: #060B18;
+  --ap-text-primary: #FFFFFF;
+  --ap-text-secondary: #94A3B8;
+  --ap-text-muted: #64748B;
+  --ap-gold: #F59E0B;
+  --ap-gold-hover: #D97706;
+  --ap-gold-tint: rgba(245, 158, 11, 0.12);
+  --ap-emerald: #10B981;
+  --ap-indigo: #6366F1;
+  --ap-rose: #EF4444;
+}
+
+/* ==========================================================================
+   1. AUTH / LOGIN / REGISTER PAGE
+   ========================================================================== */
+.cs-auth-page {
+  min-height: 100vh;
+  background-color: var(--ap-bg);
+  background-image: 
+    radial-gradient(circle at 10% 20%, rgba(245, 158, 11, 0.08) 0%, transparent 40%),
+    radial-gradient(circle at 90% 80%, rgba(99, 102, 241, 0.08) 0%, transparent 40%);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  color: var(--ap-text-primary);
+}
+
+.cs-auth-header {
+  padding: 20px 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--ap-card-border);
+}
+
+.cs-auth-card-box {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 30px 16px;
+}
+
+.cs-auth-card {
+  width: 100%;
+  max-width: 440px;
+  background: var(--ap-card-bg);
+  border: 1px solid var(--ap-card-border);
+  border-radius: 20px;
+  padding: 36px 32px;
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.6);
+}
+
+.cs-auth-tabs {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  background: var(--ap-input-bg);
+  border: 1px solid var(--ap-card-border);
+  border-radius: 12px;
+  padding: 4px;
+  margin-bottom: 24px;
+}
+
+.cs-auth-tab-btn {
+  padding: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  text-align: center;
+  border-radius: 8px;
+  border: none;
+  background: transparent;
+  color: var(--ap-text-secondary);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs-auth-tab-btn.active {
+  background: var(--ap-card-bg);
+  color: #FFFFFF;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
+}
+
+.cs-auth-input-group {
+  margin-bottom: 18px;
+}
+
+.cs-auth-label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ap-text-secondary);
+  margin-bottom: 8px;
+}
+
+.cs-auth-input-wrap {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cs-auth-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--ap-text-muted);
+  pointer-events: none;
+}
+
+.cs-auth-input {
+  width: 100%;
+  background: var(--ap-input-bg);
+  border: 1px solid var(--ap-card-border);
+  border-radius: 12px;
+  padding: 12px 14px 12px 42px;
+  font-size: 14px;
+  color: #FFFFFF;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.cs-auth-input:focus {
+  border-color: var(--ap-gold);
+  box-shadow: 0 0 0 3px rgba(245, 158, 11, 0.15);
+}
+
+.cs-btn-submit {
+  width: 100%;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #000000;
+  font-weight: 700;
+  font-size: 14px;
+  padding: 14px 20px;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+  transition: all 0.2s ease;
+  margin-top: 12px;
+}
+
+.cs-btn-submit:hover:not(:disabled) {
+  background: linear-gradient(135deg, #FBBF24 0%, #EA580C 100%);
+  transform: translateY(-1px);
+}
+
+.cs-btn-submit:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+/* ==========================================================================
+   2. AUTHENTIC ADMIN DASHBOARD LAYOUT (SIDEBAR + MAIN)
+   ========================================================================== */
+.cs-ap-wrapper {
+  display: flex;
+  min-height: 100vh;
+  background-color: var(--ap-bg);
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+  color: var(--ap-text-primary);
+}
+
+/* Sidebar */
+.cs-ap-sidebar {
+  width: var(--ap-sidebar-width);
+  background: var(--ap-sidebar-bg);
+  border-right: 1px solid var(--ap-card-border);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  z-index: 50;
+}
+
+.cs-ap-brand {
+  padding: 24px 20px;
+  border-bottom: 1px solid var(--ap-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.cs-ap-brand__tag {
+  font-size: 10px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  background: var(--ap-gold-tint);
+  border: 1px solid rgba(245, 158, 11, 0.25);
+  color: var(--ap-gold);
+  padding: 2px 7px;
+  border-radius: 5px;
+}
+
+/* Nav Menu */
+.cs-ap-nav {
+  padding: 20px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+}
+
+.cs-ap-nav__link {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--ap-text-secondary);
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+  text-align: left;
+  transition: all 0.2s ease;
+}
+
+.cs-ap-nav__link:hover {
+  background: rgba(255, 255, 255, 0.04);
+  color: #FFFFFF;
+}
+
+.cs-ap-nav__link.active {
+  background: rgba(245, 158, 11, 0.12);
+  color: var(--ap-gold);
+  font-weight: 600;
+}
+
+.cs-ap-nav__count {
+  margin-left: auto;
+  font-size: 11px;
+  padding: 2px 8px;
+  border-radius: 12px;
+  background: rgba(255, 255, 255, 0.06);
+  color: var(--ap-text-secondary);
+  font-family: monospace;
+}
+
+.cs-ap-nav__link.active .cs-ap-nav__count {
+  background: var(--ap-gold);
+  color: #000000;
+  font-weight: 700;
+}
+
+/* Sidebar Profile Footer */
+.cs-ap-sidebar-footer {
+  padding: 18px 16px;
+  border-top: 1px solid var(--ap-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.cs-ap-avatar-wrap {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.cs-ap-avatar {
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #1A237E, #455CB3);
+  color: #FFFFFF;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.cs-ap-avatar-name {
+  font-size: 13px;
+  font-weight: 600;
+  color: #FFFFFF;
+  line-height: 1.2;
+}
+
+.cs-ap-avatar-role {
+  font-size: 10px;
+  font-family: monospace;
+  text-transform: uppercase;
+  color: var(--ap-gold);
+}
+
+.cs-ap-btn-logout {
+  background: transparent;
+  border: 1px solid var(--ap-card-border);
+  color: var(--ap-text-secondary);
+  padding: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+}
+
+.cs-ap-btn-logout:hover {
+  background: rgba(239, 68, 68, 0.12);
+  color: var(--ap-rose);
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
+/* ==========================================================================
+   3. MAIN WORKSPACE
+   ========================================================================== */
+.cs-ap-main {
+  margin-left: var(--ap-sidebar-width);
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Top Header */
+.cs-ap-topheader {
+  height: 68px;
+  background: var(--ap-header-bg);
+  border-bottom: 1px solid var(--ap-card-border);
+  padding: 0 32px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 40;
+}
+
+.cs-ap-breadcrumb {
+  font-size: 13px;
+  color: var(--ap-text-secondary);
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.cs-ap-breadcrumb__current {
+  color: #FFFFFF;
+  font-weight: 600;
+}
+
+.cs-ap-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.cs-ap-btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ap-text-secondary);
+  background: transparent;
+  border: 1px solid var(--ap-card-border);
+  padding: 8px 14px;
+  border-radius: 10px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cs-ap-btn-outline:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.cs-ap-btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #000000;
+  font-size: 12px;
+  font-weight: 700;
+  padding: 8px 16px;
+  border-radius: 10px;
+  border: none;
+  cursor: pointer;
+  box-shadow: 0 4px 14px rgba(245, 158, 11, 0.25);
+  transition: all 0.2s ease;
+}
+
+.cs-ap-btn-primary:hover {
+  transform: translateY(-1px);
+}
+
+/* Content Area */
+.cs-ap-content {
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+  flex: 1;
+}
+
+/* Stat KPI Cards */
+.cs-ap-kpi-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.cs-ap-kpi-card {
+  background: var(--ap-card-bg);
+  border: 1px solid var(--ap-card-border);
+  border-radius: 16px;
+  padding: 20px 22px;
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-ap-kpi-title {
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  color: var(--ap-text-secondary);
+  margin-bottom: 8px;
+}
+
+.cs-ap-kpi-num {
+  font-size: 28px;
+  font-weight: 800;
+  color: #FFFFFF;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.cs-ap-kpi-sub {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--ap-emerald);
+}
+
+.cs-ap-kpi-icon {
+  position: absolute;
+  right: 18px;
+  bottom: 16px;
+  color: rgba(255, 255, 255, 0.08);
+}
+
+/* Card Table Wrapper */
+.cs-ap-panel-card {
+  background: var(--ap-card-bg);
+  border: 1px solid var(--ap-card-border);
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.cs-ap-panel-header {
+  padding: 18px 24px;
+  border-bottom: 1px solid var(--ap-card-border);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+.cs-ap-panel-title {
+  font-size: 16px;
+  font-weight: 700;
+  color: #FFFFFF;
+  margin: 0;
+}
+
+.cs-ap-panel-desc {
+  font-size: 12px;
+  color: var(--ap-text-secondary);
+  margin: 4px 0 0;
+}
+
+/* Search Box */
+.cs-ap-search-box {
+  position: relative;
+  width: 280px;
+}
+
+.cs-ap-search-input {
+  width: 100%;
+  background: var(--ap-input-bg);
+  border: 1px solid var(--ap-card-border);
+  border-radius: 10px;
+  padding: 8px 12px 8px 34px;
+  font-size: 12px;
+  color: #FFFFFF;
+  outline: none;
+  font-family: inherit;
+}
+
+.cs-ap-search-input:focus {
+  border-color: var(--ap-gold);
+}
+
+/* Tables */
+.cs-ap-table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: left;
+  font-size: 13px;
+}
+
+.cs-ap-table th {
+  background: var(--ap-input-bg);
+  padding: 12px 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ap-text-secondary);
+  border-bottom: 1px solid var(--ap-card-border);
+}
+
+.cs-ap-table td {
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  color: var(--ap-text-primary);
+}
+
+.cs-ap-table tr:hover td {
+  background: rgba(255, 255, 255, 0.02);
+}
+
+/* Badges */
+.cs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 3px 9px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.cs-badge-active {
+  background: rgba(16, 185, 129, 0.14);
+  color: #34D399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.cs-badge-closed {
+  background: rgba(148, 163, 184, 0.14);
+  color: #94A3B8;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.cs-badge-admin {
+  background: rgba(245, 158, 11, 0.14);
+  color: #F59E0B;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.cs-badge-recruiter {
+  background: rgba(99, 102, 241, 0.14);
+  color: #A5B4FC;
+  border: 1px solid rgba(99, 102, 241, 0.3);
+}
+
+/* Modals */
+.cs-ap-modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  z-index: 100;
+}
+
+.cs-ap-modal {
+  width: 100%;
+  max-width: 620px;
+  background: var(--ap-card-bg);
+  border: 1px solid var(--ap-card-border);
+  border-radius: 20px;
+  padding: 32px;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.8);
+}

@@ -27,7 +27,7 @@
 .cs-services-hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url("https://rgp.com/wp-content/uploads/2025/07/nav_Capabilities-Overview.jpg");
+  background-image: url("/images/nav/nav-capabilities.jpg");
   background-size: cover;
   background-position: center 30%;
   opacity: 0.18;

@@ -40,7 +40,7 @@ export const servicesData: ServiceCategory[] = [
     overview:
       "From organizational design to transformation execution, we align people, processes, and capabilities to build resilient businesses positioned for sustainable growth. In a business environment characterized by rapid disruption, successful enterprises require more than advisory slides—they require pragmatic execution partners who have led transformations from within.",
     iconName: "TrendingUp",
-    img: "https://rgp.com/wp-content/uploads/2025/07/nav_Capabilities-Overview.jpg",
+    img: "/images/nav/nav-capabilities.jpg",
     stats: [
       { value: "45%", label: "Average Acceleration in Time-to-Value" },
       { value: "98%", label: "Enterprise Project Completion Rate" },
@@ -101,7 +101,7 @@ export const servicesData: ServiceCategory[] = [
     overview:
       "Through disciplined financial processes, informed tax planning, and greater visibility into business performance, we help organizations maintain financial integrity, navigate complexity, and make confident, well-informed decisions. Our senior accounting practitioners and former Big 4 partners bring deep technical mastery combined with practical industry experience.",
     iconName: "DollarSign",
-    img: "https://rgp.com/wp-content/uploads/2025/07/nav_CSuite-Overview.jpg",
+    img: "/images/nav/nav-csuite.jpg",
     stats: [
       { value: "90%", label: "Of Fortune 100 CFOs Rely on Our Experts" },
       { value: "30%", label: "Average Reduction in Month-End Close Cycle" },
@@ -157,7 +157,7 @@ export const servicesData: ServiceCategory[] = [
     overview:
       "At Cornerstone, we help organizations identify emerging opportunities, modernize digital capabilities, and translate innovative technology investments into practical business outcomes. By bringing together strategic insight, data intelligence, cloud technology, and operational understanding, we enable businesses to adapt with speed and confidence.",
     iconName: "Cpu",
-    img: "https://rgp.com/wp-content/uploads/2025/07/nav_Technology-Overview.jpg",
+    img: "/images/nav/nav-technology.jpg",
     stats: [
       { value: "3.5x", label: "Speed-to-Production for Enterprise Cloud Initiatives" },
       { value: "60%", label: "Reduction in Legacy Technical Debt" },
@@ -203,7 +203,7 @@ export const servicesData: ServiceCategory[] = [
     overview:
       "Our approach brings structure to employment practices, worker classification, internal audit, cybersecurity risk, tax requirements, and workforce documentation. We help businesses strengthen internal controls and maintain alignment with rapidly shifting domestic and global regulations, protecting enterprise reputation and shareholder value.",
     iconName: "ShieldCheck",
-    img: "https://rgp.com/wp-content/uploads/2025/07/nav_Industry-Overview.jpg",
+    img: "/images/nav/nav-industry.jpg",
     stats: [
       { value: "100%", label: "Regulatory Compliance Audit Clearance" },
       { value: "70%", label: "Reduction in Compliance Friction & Exceptions" },
@@ -251,7 +251,7 @@ export const industryData: IndustryCategory[] = [
       "We support hospitals, health systems, life sciences, medical device innovators, and payers to build resilient teams and streamline operations.",
     overview:
       "At Cornerstone, we support the diverse needs of the healthcare industry through integrated talent solutions, workforce strategy, technology enablement, financial operations, and compliance advisory. From hospitals and health systems to pharmaceutical companies, medical device manufacturers, laboratories, and health technology providers, we help organizations strengthen their workforce, streamline clinical operations, navigate complex FDA/HIPAA requirements, and adapt to evolving reimbursement models.",
-    img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/healthcare.jpg",
     stats: [
       { value: "300+", label: "Hospitals & Health Systems Served" },
       { value: "8 of 10", label: "Top Global Pharmaceutical Leaders" },
@@ -311,7 +311,7 @@ export const industryData: IndustryCategory[] = [
       "We partner with banks, asset managers, fintechs, and insurers to modernize infrastructure, manage risk, and accelerate growth.",
     overview:
       "At Cornerstone, we support organizations across the financial ecosystem through integrated talent solutions, financial operations, technology enablement, strategic advisory, and regulatory compliance. From global Tier-1 investment banks to rapid-scale fintechs and insurance giants, we help financial institutions modernize legacy core systems, ensure Dodd-Frank/Basel IV compliance, and navigate market volatility.",
-    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/financial-services.jpg",
     stats: [
       { value: "70%", label: "Of Global Fortune 500 Financial Firms Served" },
       { value: "$50B+", label: "Transactions & Portfolios Advised" },
@@ -371,7 +371,7 @@ export const industryData: IndustryCategory[] = [
       "We support state, local, and federal agencies in modernizing operations, improving public service delivery, and managing civic resources.",
     overview:
       "At Cornerstone, we support public sector organizations in navigating complex workforce, operational, technological, and regulatory demands. By aligning people, technology, and organizational priorities, we help public institutions build resilient operations, implement transparent financial controls, and deliver lasting value to the communities they serve.",
-    img: "https://images.unsplash.com/photo-1523292562811-8fa7962a471f?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/public-sector.jpg",
     stats: [
       { value: "120+", label: "Public Sector Agencies & Municipalities Supported" },
       { value: "$4.5B", label: "Public Grants & Allocations Audited" },
@@ -416,7 +416,7 @@ export const industryData: IndustryCategory[] = [
       "We partner with high-growth tech companies and enterprise software providers to build technical capabilities and scale operations.",
     overview:
       "From software engineering and cloud infrastructure to customer success and DevSecOps, we provide specialized talent and operational discipline. We help SaaS innovators and tech enterprises accelerate release cycles, reduce technical debt, and build resilient architectures.",
-    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/technology.jpg",
     stats: [
       { value: "250+", label: "Enterprise Tech Companies Accelerated" },
       { value: "50%", label: "Faster Engineering Squad Deployment" },
@@ -466,7 +466,7 @@ export const industryData: IndustryCategory[] = [
       "We deliver senior advisory, specialized talent solutions, and large-scale transformation management to world-leading global enterprises.",
     overview:
       "Our practitioners combine deep domain knowledge with agile delivery to solve complex corporate challenges and drive sustainable long-term value. Having served 90% of the Fortune 100, we understand the governance, scale, and multi-entity coordination needed for global success.",
-    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/financial-services.jpg",
     stats: [
       { value: "90%", label: "Of Fortune 100 Enterprises Trust Cornerstone" },
       { value: "25+", label: "Years of Sustained Enterprise Partnerships" },
@@ -516,7 +516,7 @@ export const industryData: IndustryCategory[] = [
       "We work with higher education institutions and university research systems to modernize administrative operations and student services.",
     overview:
       "Higher education faces shifting demographic realities, state funding volatility, and changing student expectations. Cornerstone partners with universities, community college districts, and academic medical centers to streamline campus administrative services, upgrade legacy ERPs, and enhance student engagement.",
-    img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/higher-education.jpg",
     stats: [
       { value: "75+", label: "Leading Universities & Research Institutions" },
       { value: "$1.8B+", label: "Academic Research Grants Administered" },
@@ -566,7 +566,7 @@ export const industryData: IndustryCategory[] = [
       "We connect ambitious emerging talent with premier enterprise career opportunities, structured mentorship, and hands-on consulting training.",
     overview:
       "Cornerstone's Early Career ecosystem bridges the gap between academic graduation and high-performance corporate impact. Through intensive consulting readiness training, executive mentorship, and direct deployment to Fortune 500 client initiatives, we build the next generation of business and technology leaders.",
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/private-equity.jpg",
     stats: [
       { value: "95%", label: "Career Placement Rate for Program Graduates" },
       { value: "1:1", label: "Executive Mentorship Pairing" },

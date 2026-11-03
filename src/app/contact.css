@@ -32,7 +32,7 @@
 .cs-contact-hero__bg {
   position: absolute;
   inset: 0;
-  background-image: url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=2400&q=85");
+  background-image: url("/images/industries/financial-services.jpg");
   background-size: cover;
   background-position: center;
   opacity: 0.22;

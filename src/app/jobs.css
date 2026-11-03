@@ -1,0 +1,242 @@
+/* ==========================================================================
+   Cornerstone Enterprise - Public Jobs & Careers Board Stylesheet
+   ========================================================================== */
+
+.cs-jobs-page {
+  min-height: 100vh;
+  background-color: #070B14;
+  color: #F8FAFC;
+  display: flex;
+  flex-direction: column;
+  font-family: var(--font-poppins, 'Poppins', sans-serif);
+}
+
+/* Hero Section */
+.cs-jobs-hero {
+  position: relative;
+  background: radial-gradient(circle at 50% 0%, #151E36 0%, #0B1120 60%, #070B14 100%);
+  padding-top: 140px;
+  padding-bottom: 70px;
+  padding-left: 24px;
+  padding-right: 24px;
+  text-align: center;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+  overflow: hidden;
+}
+
+.cs-jobs-hero__inner {
+  max-width: 900px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 10;
+}
+
+.cs-jobs-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(245, 158, 11, 0.12);
+  border: 1px solid rgba(245, 158, 11, 0.28);
+  color: #F59E0B;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  padding: 5px 14px;
+  border-radius: 9999px;
+  margin-bottom: 18px;
+}
+
+.cs-jobs-title {
+  font-size: 46px;
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  color: #FFFFFF;
+  margin: 0 0 16px;
+}
+
+.cs-jobs-title__accent {
+  background: linear-gradient(135deg, #F59E0B 0%, #FDE68A 50%, #D97706 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.cs-jobs-desc {
+  font-size: 15px;
+  color: #94A3B8;
+  max-width: 650px;
+  margin: 0 auto 28px;
+  line-height: 1.6;
+}
+
+.cs-jobs-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.cs-btn-admin-portal {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #000000;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 11px 22px;
+  border-radius: 12px;
+  text-decoration: none;
+  box-shadow: 0 6px 20px rgba(245, 158, 11, 0.3);
+  transition: all 0.2s ease;
+}
+
+.cs-btn-admin-portal:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 26px rgba(245, 158, 11, 0.4);
+}
+
+.cs-btn-general-app {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  background: #0E172C;
+  color: #E2E8F0;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 11px 20px;
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.cs-btn-general-app:hover {
+  background: #152242;
+  border-color: rgba(255, 255, 255, 0.2);
+  color: #FFFFFF;
+}
+
+/* Listings Container */
+.cs-jobs-container {
+  max-width: 1140px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 48px 24px;
+  flex: 1;
+}
+
+/* Search Bar */
+.cs-filter-bar {
+  background: #0E172C;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 18px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 32px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+  flex-wrap: wrap;
+}
+
+.cs-search-input-wrap {
+  position: relative;
+  flex: 1;
+  min-width: 260px;
+}
+
+.cs-search-input {
+  width: 100%;
+  background: #070B14;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  padding: 10px 14px 10px 38px;
+  font-size: 13px;
+  color: #FFFFFF;
+  outline: none;
+  font-family: inherit;
+}
+
+.cs-search-input:focus {
+  border-color: #F59E0B;
+}
+
+.cs-dept-pill-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+}
+
+.cs-dept-pill {
+  background: #070B14;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: #94A3B8;
+  padding: 8px 14px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all 0.2s ease;
+}
+
+.cs-dept-pill.active {
+  background: #F59E0B;
+  color: #000000;
+  font-weight: 600;
+  border-color: #F59E0B;
+}
+
+/* Job Card */
+.cs-job-public-card {
+  background: #0E172C;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 20px;
+  padding: 32px;
+  margin-bottom: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: all 0.2s ease;
+}
+
+@media (min-width: 768px) {
+  .cs-job-public-card {
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+  }
+}
+
+.cs-job-public-card:hover {
+  border-color: rgba(255, 255, 255, 0.18);
+  transform: translateY(-2px);
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.4);
+}
+
+.cs-btn-apply {
+  background: linear-gradient(135deg, #F59E0B 0%, #D97706 100%);
+  color: #000000;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 12px 24px;
+  border-radius: 12px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  white-space: nowrap;
+  box-shadow: 0 4px 16px rgba(245, 158, 11, 0.25);
+  transition: all 0.2s ease;
+}
+
+.cs-btn-apply:hover {
+  background: linear-gradient(135deg, #FBBF24 0%, #EA580C 100%);
+  transform: translateY(-2px);
+}
+

@@ -38,7 +38,7 @@ const servicesData: ServiceCategory[] = [
     title: "Business Strategy and Transformation",
     tagline:
       "We partner with organizations to define strategic priorities, optimize operating models, and translate business objectives into measurable outcomes. From organizational design to transformation execution, we align people, processes, and capabilities to build resilient businesses positioned for sustainable growth.",
-    img: "https://rgp.com/wp-content/uploads/2025/07/nav_Capabilities-Overview.jpg",
+    img: "/images/nav/nav-capabilities.jpg",
     items: [
       {
         num: "01",
@@ -82,7 +82,7 @@ const servicesData: ServiceCategory[] = [
     title: "Finance and Accounting",
     tagline:
       "We deliver integrated finance and accounting support that strengthens financial governance, enhances reporting accuracy, and improves operational efficiency. Through disciplined financial processes, informed tax planning, and greater visibility into business performance, we help organizations maintain financial integrity, navigate complexity, and make confident, well-informed decisions.",
-    img: "https://rgp.com/wp-content/uploads/2025/07/nav_CSuite-Overview.jpg",
+    img: "/images/nav/nav-csuite.jpg",
     items: [
       {
         num: "01",
@@ -121,7 +121,7 @@ const servicesData: ServiceCategory[] = [
     title: "Digital Strategy and Innovation",
     tagline:
       "Digital strategy is about aligning technology with business vision to create meaningful, measurable progress. At Cornerstone, we help organizations identify emerging opportunities, modernize digital capabilities, and translate innovative ideas into practical business outcomes. By bringing together strategic insight, data intelligence, technology, and operational understanding, we enable businesses to adapt with confidence, improve efficiency, and respond to an evolving marketplace.",
-    img: "https://rgp.com/wp-content/uploads/2025/07/nav_Technology-Overview.jpg",
+    img: "/images/nav/nav-technology.jpg",
     items: [
       {
         num: "01",
@@ -150,7 +150,7 @@ const servicesData: ServiceCategory[] = [
     title: "Workforce Compliance & Risk Advisory",
     tagline:
       "At Cornerstone, we help organizations navigate the complexities of workforce compliance, regulatory obligations, and operational risk with precision and foresight. Our approach brings structure to employment practices, worker classification, immigration processes, tax-related requirements, and workforce documentation, helping businesses strengthen internal controls and maintain alignment with applicable regulations.",
-    img: "https://rgp.com/wp-content/uploads/2025/07/nav_Industry-Overview.jpg",
+    img: "/images/nav/nav-industry.jpg",
     items: [
       {
         num: "01",
@@ -195,7 +195,7 @@ const industryData: IndustryCategory[] = [
     subtitle: "Across the Healthcare Ecosystem",
     tagline:
       "At Cornerstone, we support the diverse needs of the healthcare industry through integrated talent solutions, workforce strategy, technology enablement, financial operations, and compliance advisory. From hospitals and health systems to pharmaceutical companies, medical device manufacturers, laboratories, and health technology providers, we help organizations strengthen their workforce, streamline operations, navigate regulatory requirements, and adapt to evolving industry demands. By bringing together specialized talent, data-driven insights, and operational expertise, we help healthcare organizations build resilient teams, improve organizational effectiveness, and deliver sustainable value in a sector where precision, trust, and continuity matter.",
-    img: "https://images.unsplash.com/photo-1519494026892-80bbd2d6fd0d?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/healthcare.jpg",
     items: [
       {
         num: "01",
@@ -235,7 +235,7 @@ const industryData: IndustryCategory[] = [
     subtitle: "Supporting the Financial Ecosystem",
     tagline:
       "At Cornerstone, we support organizations across the financial ecosystem through integrated talent solutions, financial operations, technology enablement, strategic advisory, and regulatory compliance. From banks and insurance providers to investment firms, fintech companies, asset managers, and financial service organizations, we help businesses strengthen their workforce, modernize processes, improve financial visibility, and navigate evolving regulatory requirements. By combining industry insight, specialized expertise, data-driven decision-making, and operational discipline, we help financial institutions manage complexity, enhance efficiency, mitigate risk, and build resilient foundations for sustainable growth.",
-    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/financial-services.jpg",
     items: [
       {
         num: "01",
@@ -275,7 +275,7 @@ const industryData: IndustryCategory[] = [
     subtitle: "Public Sector Services",
     tagline:
       "At Cornerstone, we support public sector organizations in navigating complex workforce, operational, technological, and regulatory demands. From state and local government to federal agencies, public healthcare providers, and education systems, we bring together specialized talent, strategic insight, and operational expertise to address evolving institutional needs. Our approach focuses on strengthening workforce capabilities, improving service delivery, modernizing processes, and supporting responsible resource management. By aligning people, technology, and organizational priorities, we help public institutions build resilient operations, adapt to changing demands, and deliver lasting value to the communities they serve.",
-    img: "https://images.unsplash.com/photo-1523292562811-8fa7962a471f?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/public-sector.jpg",
     items: [
       {
         num: "01",
@@ -300,7 +300,7 @@ const industryData: IndustryCategory[] = [
     subtitle: "Enterprise Tech & Cloud",
     tagline:
       "At Cornerstone, we partner with high-growth technology companies and enterprise software providers to scale operations, build high-performance technical teams, and accelerate time-to-market. From software engineering and cloud transformation to infrastructure modernization and customer success, we provide the specialized talent and operational discipline needed to thrive in competitive tech landscapes.",
-    img: "https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/technology.jpg",
     items: [
       {
         num: "01",
@@ -330,7 +330,7 @@ const industryData: IndustryCategory[] = [
     subtitle: "Global Enterprise Advisory",
     tagline:
       "We deliver senior advisory, specialized talent solutions, and large-scale transformation management to world-leading global enterprises. Our practitioners combine deep domain knowledge with agile delivery to solve complex corporate challenges and drive sustainable long-term value.",
-    img: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/financial-services.jpg",
     items: [
       {
         num: "01",
@@ -360,7 +360,7 @@ const industryData: IndustryCategory[] = [
     subtitle: "Higher Education & Research",
     tagline:
       "We work with higher education institutions and university research systems to modernize administrative operations, streamline student service lifecycles, and strengthen institutional resilience amid shifting demographic and funding demands.",
-    img: "https://images.unsplash.com/photo-1541339907198-e08756dedf3f?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/higher-education.jpg",
     items: [
       {
         num: "01",
@@ -390,7 +390,7 @@ const industryData: IndustryCategory[] = [
     subtitle: "Accelerated Talent Development",
     tagline:
       "We connect ambitious emerging talent with premier enterprise career opportunities, structured mentorship, and hands-on consulting training designed to bridge the gap between academic education and high-impact corporate performance.",
-    img: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?auto=format&fit=crop&w=900&q=80",
+    img: "/images/industries/private-equity.jpg",
     items: [
       {
         num: "01",
@@ -423,7 +423,7 @@ const careersData = {
   title: "Career at CORNERSTONE",
   tagline:
     "From strategy and finance to tech, risk, and operations, Cornerstone puts experienced people at the center of transformation. Redefine what's possible in your career.",
-  img: "https://rgp.com/wp-content/uploads/2025/07/menu-careers.jpg",
+  img: "/images/nav/menu-careers.jpg",
   items: [
     {
       num: "01",
@@ -576,7 +576,7 @@ export function SiteHeader() {
 
                 {/* Jobs Button */}
                 <li className="rgp-nav-item">
-                  <Link href="/contact" className="rgp-jobs-button">
+                  <Link href="/jobs" className="rgp-jobs-button">
                     <span className="rgp-jobs-indicator" />
                     <span>JOBS</span>
                   </Link>
@@ -1051,8 +1051,8 @@ export function SiteHeader() {
                 ["Services", "/services"],
                 ["Industry", "/industry"],
                 ["Assessment & Enrollment", "/services/workforce-compliance"],
-                ["Career at CORNERSTONE", "/contact"],
-                ["Jobs", "/contact"],
+                ["Career at CORNERSTONE", "/jobs"],
+                ["Jobs", "/jobs"],
               ].map(([label, href]) => (
                 <Link
                   key={label}
