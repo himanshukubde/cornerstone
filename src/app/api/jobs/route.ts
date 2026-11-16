@@ -6,7 +6,7 @@ export async function GET(req: Request) {
   const { searchParams } = new URL(req.url);
   const includeAll = searchParams.get("all") === "true";
 
-  const allJobs = db.getJobs();
+  const allJobs = await db.getJobs();
 
   // If asking for all jobs (including closed ones for admin), verify authentication
   if (includeAll) {
@@ -68,7 +68,7 @@ export async function POST(req: Request) {
       updatedAt: now,
     };
 
-    const saved = db.createJob(newJob);
+    const saved = await db.createJob(newJob);
     return NextResponse.json({ message: "Job created successfully.", job: saved }, { status: 201 });
   } catch (err: unknown) {
     console.error("Create job API error:", err);

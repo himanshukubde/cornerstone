@@ -31,7 +31,7 @@ export async function POST(req: Request) {
     }
 
     const normalizedEmail = email.trim().toLowerCase();
-    const existing = db.getUserByEmail(normalizedEmail);
+    const existing = await db.getUserByEmail(normalizedEmail);
     if (existing) {
       return NextResponse.json(
         { error: "An account with this email already exists. Please log in." },
@@ -40,7 +40,7 @@ export async function POST(req: Request) {
     }
 
     // Role assignment: first user is admin, subsequent are recruiters
-    const allUsers = db.getUsers();
+    const allUsers = await db.getUsers();
     const role: "admin" | "recruiter" = allUsers.length === 0 ? "admin" : "recruiter";
 
     const passwordHash = await hashPassword(password);
@@ -53,7 +53,7 @@ export async function POST(req: Request) {
       createdAt: new Date().toISOString(),
     };
 
-    db.createUser(newUser);
+    await db.createUser(newUser);
 
     const token = signToken({
       userId: newUser.id,

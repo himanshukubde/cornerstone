@@ -43,7 +43,7 @@ export async function getCurrentUser(): Promise<User | null> {
     const payload = verifyToken(token);
     if (!payload?.userId) return null;
 
-    const user = db.getUserById(payload.userId);
+    const user = await db.getUserById(payload.userId);
     return user || null;
   } catch {
     return null;

@@ -73,7 +73,7 @@ export async function POST(req: Request) {
     };
 
     // 1. Always save to database first
-    db.createContact(newContact);
+    await db.createContact(newContact);
 
     // 2. Dispatch SMTP Notification
     let mailSent = false;

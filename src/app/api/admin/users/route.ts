@@ -8,7 +8,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized access." }, { status: 401 });
   }
 
-  const allUsers = db.getUsers().map(sanitizeUser);
+  const allUsers = (await db.getUsers()).map(sanitizeUser);
   return NextResponse.json({ users: allUsers });
 }
 

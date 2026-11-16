@@ -1,5 +1,6 @@
 import fs from "fs";
 import path from "path";
+import { MongoClient, type Collection, type Document } from "mongodb";
 
 // Types
 export interface User {
@@ -165,8 +166,8 @@ function getSeedJobs(): JobOpening[] {
   ];
 }
 
-// Database API
-export const db = {
+// JSON-file backend (default; used for local development)
+const jsonDb = {
   // Users
   getUsers: (): User[] => readCollection<User>("users"),
   getUserById: (id: string): User | undefined =>
@@ -230,3 +231,127 @@ export const db = {
   },
 };
 
+// ---------------------------------------------------------------------------
+// MongoDB backend (used automatically when MONGODB_URI is set)
+// ---------------------------------------------------------------------------
+type CollectionName = "users" | "jobs" | "contacts";
+
+const globalForMongo = globalThis as unknown as {
+  _mongoClientPromise?: Promise<MongoClient>;
+};
+
+function getMongoClient(): Promise<MongoClient> {
+  if (!globalForMongo._mongoClientPromise) {
+    globalForMongo._mongoClientPromise = new MongoClient(
+      process.env.MONGODB_URI as string
+    ).connect();
+  }
+  return globalForMongo._mongoClientPromise;
+}
+
+function dbName(): string {
+  return process.env.MONGODB_DB || "cornerstone";
+}
+
+async function col(name: CollectionName): Promise<Collection<Document>> {
+  const client = await getMongoClient();
+  return client.db(dbName()).collection<Document>(name);
+}
+
+// Strips Mongo's internal _id so records keep the exact shape of the JSON backend.
+const NO_ID = { projection: { _id: 0 } } as const;
+
+async function seedJobsIfNeeded(): Promise<void> {
+  // Mirrors the JSON backend: seed default jobs once, only on first use.
+  const client = await getMongoClient();
+  const meta = client.db(dbName()).collection<Document>("meta");
+  const flag = await meta.findOne({ _id: "jobs_seeded" } as Document);
+  if (flag) return;
+  const jobs = await col("jobs");
+  if ((await jobs.estimatedDocumentCount()) === 0) {
+    await jobs.insertMany(getSeedJobs().map((j) => ({ ...j })));
+  }
+  await meta.updateOne(
+    { _id: "jobs_seeded" } as Document,
+    { $set: { at: new Date().toISOString() } },
+    { upsert: true }
+  );
+}
+
+const mongoDb = {
+  getUsers: async (): Promise<User[]> =>
+    (await (await col("users")).find({}, NO_ID).toArray()) as unknown as User[],
+  getUserById: async (id: string): Promise<User | undefined> =>
+    ((await (await col("users")).findOne({ id }, NO_ID)) as unknown as User) || undefined,
+  getUserByEmail: async (email: string): Promise<User | undefined> => {
+    const users = (await (await col("users")).find({}, NO_ID).toArray()) as unknown as User[];
+    return users.find((u) => u.email.toLowerCase() === email.toLowerCase().trim());
+  },
+  createUser: async (user: User): Promise<User> => {
+    await (await col("users")).insertOne({ ...user });
+    return user;
+  },
+
+  getJobs: async (): Promise<JobOpening[]> => {
+    await seedJobsIfNeeded();
+    // Newest-first, matching the JSON backend's unshift ordering for new jobs.
+    return (await (await col("jobs"))
+      .find({}, NO_ID)
+      .sort({ createdAt: -1 })
+      .toArray()) as unknown as JobOpening[];
+  },
+  getJobById: async (id: string): Promise<JobOpening | undefined> => {
+    await seedJobsIfNeeded();
+    return ((await (await col("jobs")).findOne({ id }, NO_ID)) as unknown as JobOpening) || undefined;
+  },
+  createJob: async (job: JobOpening): Promise<JobOpening> => {
+    await seedJobsIfNeeded();
+    await (await col("jobs")).insertOne({ ...job });
+    return job;
+  },
+  updateJob: async (id: string, updates: Partial<JobOpening>): Promise<JobOpening | null> => {
+    await seedJobsIfNeeded();
+    const res = await (await col("jobs")).findOneAndUpdate(
+      { id },
+      { $set: { ...updates, updatedAt: new Date().toISOString() } },
+      { returnDocument: "after", projection: { _id: 0 } }
+    );
+    return (res as unknown as JobOpening) || null;
+  },
+  deleteJob: async (id: string): Promise<boolean> => {
+    await seedJobsIfNeeded();
+    const res = await (await col("jobs")).deleteOne({ id });
+    return res.deletedCount > 0;
+  },
+
+  getContacts: async (): Promise<ContactSubmission[]> =>
+    (await (await col("contacts"))
+      .find({}, NO_ID)
+      .sort({ createdAt: -1 })
+      .toArray()) as unknown as ContactSubmission[],
+  getContactById: async (id: string): Promise<ContactSubmission | undefined> =>
+    ((await (await col("contacts")).findOne({ id }, NO_ID)) as unknown as ContactSubmission) || undefined,
+  createContact: async (contact: ContactSubmission): Promise<ContactSubmission> => {
+    await (await col("contacts")).insertOne({ ...contact });
+    return contact;
+  },
+  updateContactStatus: async (id: string, status: ContactSubmission["status"]): Promise<boolean> => {
+    const res = await (await col("contacts")).updateOne({ id }, { $set: { status } });
+    return res.matchedCount > 0;
+  },
+};
+
+// Public API: always async so callers are identical for both backends.
+type Async<T> = {
+  [K in keyof T]: T[K] extends (...a: infer A) => infer R ? (...a: A) => Promise<R> : never;
+};
+type DbApi = Async<typeof jsonDb>;
+
+const jsonAsync = Object.fromEntries(
+  Object.entries(jsonDb).map(([k, fn]) => [
+    k,
+    async (...args: unknown[]) => (fn as (...a: unknown[]) => unknown)(...args),
+  ])
+) as unknown as DbApi;
+
+export const db: DbApi = process.env.MONGODB_URI ? (mongoDb as unknown as DbApi) : jsonAsync;

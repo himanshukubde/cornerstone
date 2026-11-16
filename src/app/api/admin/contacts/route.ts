@@ -8,7 +8,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized access." }, { status: 401 });
   }
 
-  const contacts = db.getContacts();
+  const contacts = await db.getContacts();
   return NextResponse.json({ contacts });
 }
 

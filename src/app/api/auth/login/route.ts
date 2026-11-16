@@ -15,7 +15,7 @@ export async function POST(req: Request) {
     }
 
     const normalizedEmail = email.trim().toLowerCase();
-    const user = db.getUserByEmail(normalizedEmail);
+    const user = await db.getUserByEmail(normalizedEmail);
     if (!user) {
       return NextResponse.json(
         { error: "Invalid email or password." },
