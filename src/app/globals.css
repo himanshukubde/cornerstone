@@ -1753,3 +1753,10 @@ button[class*="btn-premium"]:hover::after {
     gap: 8px;
   }
 }
+
+/* Keep the cookie notice's buttons clear of the host's fixed corner badge (197x64px) below desktop widths */
+@media (max-width: 1024px) {
+  .cookie-notice {
+    bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+}

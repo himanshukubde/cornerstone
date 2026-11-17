@@ -933,3 +933,10 @@
   align-items: center;
   min-height: 44px;
 }
+
+/* Leave room at the bottom of the drawer for the host's fixed corner badge (197x64px) */
+@media (max-width: 1024px) {
+  .cs-mnav__panel {
+    padding-bottom: calc(76px + env(safe-area-inset-bottom));
+  }
+}
