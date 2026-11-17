@@ -1693,3 +1693,63 @@ button[class*="btn-premium"]:hover::after {
   box-shadow: 0 8px 20px rgba(69, 92, 179, 0.35);
 }
 
+
+/* ---------------------------------------------------------------
+   Small-screen refinements (mobile only; desktop rules unchanged)
+   --------------------------------------------------------------- */
+@media (max-width: 640px) {
+  /* Compact cookie notice so it does not cover half the screen */
+  .cookie-notice {
+    left: 12px;
+    right: 12px;
+    bottom: calc(12px + env(safe-area-inset-bottom));
+    padding: 16px;
+    gap: 10px;
+    max-height: 70vh;
+    overflow-y: auto;
+  }
+  .cookie-copy h2 {
+    font-size: 16px;
+    margin-bottom: 4px;
+  }
+  .cookie-copy p {
+    font-size: 12px;
+    line-height: 1.5;
+  }
+  .cookie-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+  .cookie-actions .cookie-link {
+    grid-column: 1 / -1;
+    margin-right: 0;
+    text-align: left;
+    min-height: 32px;
+  }
+  .cookie-actions button {
+    min-height: 44px;
+  }
+  /* The "Accept all" button has no styling of its own (utility classes are not compiled) */
+  .cookie-actions button:not(.cookie-link):not(.cookie-secondary) {
+    background: #1A237E;
+    color: #fff;
+    border: 0;
+    font-size: 12px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    cursor: pointer;
+  }
+}
+
+@media (max-width: 480px) {
+  /* Hero slider counter + arrows: keep inside the viewport without crowding */
+  .hero-bottom {
+    gap: 12px;
+  }
+  .hero-slider-nav {
+    min-width: 0;
+    gap: 8px;
+  }
+}

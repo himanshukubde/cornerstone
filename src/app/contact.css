@@ -634,3 +634,26 @@
   left: 160%;
   transition: left 0.75s cubic-bezier(0.16, 1, 0.3, 1);
 }
+
+/* Small screens: stack the pre-footer banner so it cannot widen the page */
+@media (max-width: 639px) {
+  .cs-contact-cta {
+    padding: 40px 20px;
+  }
+  .cs-contact-cta__brand {
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}
+
+/* Very narrow screens: let long values (e.g. email addresses) wrap instead of widening the page */
+@media (max-width: 479px) {
+  .cs-contact-info,
+  .cs-contact-card > div {
+    min-width: 0;
+  }
+  .cs-contact-card__value {
+    overflow-wrap: anywhere;
+  }
+}

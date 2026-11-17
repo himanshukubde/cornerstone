@@ -458,8 +458,58 @@ export function SiteHeader() {
   const [hoveredCareerItem, setHoveredCareerItem] = useState<{ num: string; title: string; desc: string } | null>(null);
   const [searchOpen, setSearchOpen] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const [mobileSection, setMobileSection] = useState<string | null>(null);
 
   const headerRef = useRef<HTMLDivElement>(null);
+  const mobileToggleRef = useRef<HTMLButtonElement>(null);
+  const mobileCloseRef = useRef<HTMLButtonElement>(null);
+  const mobilePanelRef = useRef<HTMLDivElement>(null);
+
+  const closeMobile = () => {
+    setMobileOpen(false);
+    setMobileSection(null);
+  };
+
+  // Mobile drawer: lock background scroll, Escape to close, focus trap, restore focus
+  useEffect(() => {
+    if (!mobileOpen) return;
+    const toggle = mobileToggleRef.current;
+    const previousOverflow = document.body.style.overflow;
+    document.body.style.overflow = "hidden";
+    mobileCloseRef.current?.focus();
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        closeMobile();
+        return;
+      }
+      if (e.key !== "Tab" || !mobilePanelRef.current) return;
+      const focusable = mobilePanelRef.current.querySelectorAll<HTMLElement>(
+        'a[href], button:not([disabled])',
+      );
+      if (!focusable.length) return;
+      const first = focusable[0];
+      const last = focusable[focusable.length - 1];
+      if (e.shiftKey && document.activeElement === first) {
+        e.preventDefault();
+        last.focus();
+      } else if (!e.shiftKey && document.activeElement === last) {
+        e.preventDefault();
+        first.focus();
+      }
+    };
+    // Close if the viewport grows into the desktop layout
+    const mq = window.matchMedia("(min-width: 1025px)");
+    const onMq = () => mq.matches && closeMobile();
+    document.addEventListener("keydown", onKeyDown);
+    mq.addEventListener("change", onMq);
+    return () => {
+      document.body.style.overflow = previousOverflow;
+      document.removeEventListener("keydown", onKeyDown);
+      mq.removeEventListener("change", onMq);
+      toggle?.focus();
+    };
+  }, [mobileOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -595,9 +645,13 @@ export function SiteHeader() {
             <div className="rgp-mobile-actions">
               <button
                 type="button"
+                ref={mobileToggleRef}
                 className="rgp-mobile-toggle"
                 onClick={() => setMobileOpen(true)}
                 aria-label="Open navigation menu"
+                aria-haspopup="dialog"
+                aria-expanded={mobileOpen}
+                aria-controls="cs-mobile-nav"
               >
                 <Menu size={24} />
               </button>
@@ -1028,53 +1082,94 @@ export function SiteHeader() {
       {/* Mobile Drawer */}
       <AnimatePresence>
         {mobileOpen && (
-          <motion.div
-            className="fixed inset-0 bg-white z-[2050] flex flex-col p-6 overflow-y-auto"
-            initial={{ x: "100%" }}
-            animate={{ x: 0 }}
-            exit={{ x: "100%" }}
-            transition={{ type: "tween", duration: 0.25 }}
-          >
-            <div className="flex items-center justify-between pb-6 border-b border-gray-200">
-              <CornerstoneLogo variant="dark" height={22} />
-              <button
-                type="button"
-                onClick={() => setMobileOpen(false)}
-                aria-label="Close"
-                className="p-2"
-              >
-                <X size={24} />
-              </button>
-            </div>
-            <nav className="flex flex-col py-6 gap-2">
-              {[
-                ["Services", "/services"],
-                ["Industry", "/industry"],
-                ["Assessment & Enrollment", "/services/workforce-compliance"],
-                ["Career at CORNERSTONE", "/jobs"],
-                ["Jobs", "/jobs"],
-              ].map(([label, href]) => (
-                <Link
-                  key={label}
-                  href={href}
-                  onClick={() => setMobileOpen(false)}
-                  className="font-heading text-lg font-bold py-3 border-b border-gray-100 flex items-center justify-between text-gray-900 hover:text-[#1A237E]"
-                >
-                  {label}
-                  <ArrowRight size={18} />
+          <div className="cs-mnav" key="cs-mnav">
+            <motion.div
+              className="cs-mnav__backdrop"
+              onClick={closeMobile}
+              aria-hidden="true"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+            />
+            <motion.div
+              id="cs-mobile-nav"
+              ref={mobilePanelRef}
+              className="cs-mnav__panel"
+              role="dialog"
+              aria-modal="true"
+              aria-label="Site navigation"
+              initial={{ x: "100%" }}
+              animate={{ x: 0 }}
+              exit={{ x: "100%" }}
+              transition={{ type: "tween", duration: 0.28, ease: "easeOut" }}
+            >
+              <div className="cs-mnav__top">
+                <Link href="/" onClick={closeMobile} aria-label="Cornerstone Home">
+                  <CornerstoneLogo variant="dark" height={22} />
                 </Link>
-              ))}
-            </nav>
-            <div className="mt-auto pt-6">
-              <Link
-                href="/contact"
-                onClick={() => setMobileOpen(false)}
-                className="w-full bg-[#1A237E] text-white py-3.5 font-heading font-bold uppercase tracking-widest text-center block rounded-[3px] shadow-md"
-              >
-                CONTACT
-              </Link>
-            </div>
-          </motion.div>
+                <button
+                  type="button"
+                  ref={mobileCloseRef}
+                  onClick={closeMobile}
+                  aria-label="Close navigation menu"
+                  className="cs-mnav__close"
+                >
+                  <X size={24} />
+                </button>
+              </div>
+              <nav className="cs-mnav__nav" aria-label="Mobile navigation">
+                {[
+                  { key: "services", label: "Services", href: "/services", all: "All Services", items: servicesData.map((d) => ({ title: d.title, href: `/services/${d.id}` })) },
+                  { key: "industry", label: "Industry", href: "/industry", all: "All Industries", items: industryData.map((d) => ({ title: d.title, href: `/industry/${d.id}` })) },
+                ].map((sec) => {
+                  const open = mobileSection === sec.key;
+                  return (
+                    <div className="cs-mnav__group" key={sec.key}>
+                      <button
+                        type="button"
+                        className="cs-mnav__row"
+                        aria-expanded={open}
+                        aria-controls={`cs-mnav-${sec.key}`}
+                        onClick={() => setMobileSection(open ? null : sec.key)}
+                      >
+                        <span>{sec.label}</span>
+                        <ChevronDown size={20} className={`cs-mnav__chev ${open ? "is-open" : ""}`} />
+                      </button>
+                      <div id={`cs-mnav-${sec.key}`} className={`cs-mnav__sub ${open ? "is-open" : ""}`} role="region" aria-label={sec.label} hidden={!open}>
+                        <div className="cs-mnav__sub-inner">
+                          <Link href={sec.href} onClick={closeMobile} className="cs-mnav__sublink cs-mnav__sublink--all">
+                            {sec.all}
+                            <ArrowRight size={16} />
+                          </Link>
+                          {sec.items.map((it) => (
+                            <Link key={it.href} href={it.href} onClick={closeMobile} className="cs-mnav__sublink">
+                              {it.title}
+                            </Link>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  );
+                })}
+                {[
+                  ["Assessment & Enrollment", "/services/workforce-compliance"],
+                  ["Career at CORNERSTONE", "/jobs"],
+                  ["Jobs", "/jobs"],
+                ].map(([label, href]) => (
+                  <Link key={label} href={href} onClick={closeMobile} className="cs-mnav__row cs-mnav__row--link">
+                    <span>{label}</span>
+                    <ArrowRight size={18} />
+                  </Link>
+                ))}
+              </nav>
+              <div className="cs-mnav__cta">
+                <Link href="/contact" onClick={closeMobile}>
+                  CONTACT
+                </Link>
+              </div>
+            </motion.div>
+          </div>
         )}
       </AnimatePresence>
     </>
